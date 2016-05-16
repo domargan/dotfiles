@@ -1,3 +1,8 @@
+" DO:
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" vim +PluginInstall +qall
+" cp -r ~/.vim/bundle/vim-colorschemes/colors/ ~/.vim/colors/
+
 set nocompatible
 set backspace=2
 set backspace=indent,eol,start
