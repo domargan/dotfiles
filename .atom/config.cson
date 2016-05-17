@@ -11,6 +11,10 @@
       "markdown-preview"
       "language-gfm"
     ]
+    themes: [
+      "zenburn-ui"
+      "zenburn"
+    ]
   editor:
     fontSize: 19
     scrollPastEnd: true
