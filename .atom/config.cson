@@ -16,10 +16,11 @@
       "zenburn"
     ]
   editor:
-    fontSize: 19
+    fontSize: 17
     scrollPastEnd: true
     showIndentGuide: true
     showInvisibles: true
+    softWrap: true
     tabType: "soft"
   "exception-reporting":
     userId: "5c644813-4395-dbda-2643-ff46de9a0866"
