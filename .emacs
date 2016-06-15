@@ -33,3 +33,4 @@
 (global-visual-line-mode t)
 (global-linum-mode t)
 
+(require 'go-autocomplete)
