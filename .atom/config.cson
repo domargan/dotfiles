@@ -16,7 +16,7 @@
       "zenburn"
     ]
   editor:
-    fontSize: 17
+    fontSize: 22
     scrollPastEnd: true
     showIndentGuide: true
     showInvisibles: true
