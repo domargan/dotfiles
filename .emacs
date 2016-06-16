@@ -6,7 +6,7 @@
  '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify))))
 
 (custom-set-faces
- '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 158 :width normal)))))
+ '(default ((t (:family "Mono" :foundry "unknown" :slant normal :weight normal :height 158 :width normal)))))
 
 (load-theme 'zenburn)
 
