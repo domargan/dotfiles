@@ -2,6 +2,6 @@
 	name = Domagoj Margan
 	email = margan.domagoj@gmail.com
 [core]
-	editor = vim
+	editor = emacs
 [merge]
 	tool = kdiff3
