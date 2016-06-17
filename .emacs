@@ -13,6 +13,8 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
+(recentf-mode)
+
 (split-window-vertically)
 
 (defun toggle-fullscreen ()
