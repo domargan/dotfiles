@@ -13,6 +13,8 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
+(split-window-vertically)
+
 (defun toggle-fullscreen ()
   "Toggle full screen on X11"
   (interactive)
