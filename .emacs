@@ -48,7 +48,7 @@
 (split-window-vertically)
 
 ;; Indentation settings
-{setq-default indent-tabs-mode t)
+(setq-default indent-tabs-mode t)
 (setq-default tab-width 8)
 
 
