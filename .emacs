@@ -76,6 +76,7 @@
 ;; Clean whitespaces on save
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
+(require 'git)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Go programming essentials ;;;;;;;;;
