@@ -73,6 +73,9 @@
 (global-visual-line-mode t)
 (global-linum-mode t)
 
+;; Clean whitespaces on save
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Go programming essentials ;;;;;;;;;
