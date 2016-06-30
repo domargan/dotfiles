@@ -5,3 +5,5 @@
 	editor = emacs
 [merge]
 	tool = kdiff3
+[credential]
+	helper = cache
