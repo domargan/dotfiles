@@ -11,6 +11,7 @@
 (defvar domargan-packages
   '(
     zenburn-theme
+    fill-column-indicator
     auto-complete
     go-mode
     go-eldoc
@@ -39,6 +40,11 @@
  '(default ((t (:family "Mono" :foundry "unknown" :slant normal :weight normal :height 158 :width normal)))))
  
 (load-theme 'zenburn t)
+
+;; Display 80 chars indicator
+(require 'fill-column-indicator)
+(add-hook 'after-change-major-mode-hook 'fci-mode)
+(setq fci-rule-width 5)
 
 ;; Remove splash screen
 (setq inhibit-splash-screen t)
