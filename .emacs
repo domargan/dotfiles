@@ -45,7 +45,7 @@
 (setq inhibit-startup-message t)
 
 ;; Add vertical buffer on startup
-(split-window-vertically)
+;;(split-window-vertically)
 
 ;; Indentation settings
 (setq-default indent-tabs-mode t)
