@@ -59,6 +59,9 @@
 ;; Open recent files menu entry
 (recentf-mode)
 
+;; Restore last session on startup
+(desktop-save-mode 1)
+
 ;; Enable fullscreen toggle on X11 with F11
 (defun toggle-fullscreen ()
   (interactive)
