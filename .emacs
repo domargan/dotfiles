@@ -121,7 +121,7 @@
 
 ;; Custom Compile Command
 (defun go-mode-setup ()
-  (setq compile-command "go build -v && go test -v && go vet && golint && errcheck")
+  (setq compile-command "go build -v -race && go test -v -race && go vet && golint && errcheck")
   (define-key (current-local-map) "\C-c\C-c" 'compile)
   (go-eldoc-setup)
   (setq gofmt-command "goimports")
