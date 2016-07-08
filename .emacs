@@ -57,6 +57,9 @@
 (setq-default indent-tabs-mode t)
 (setq-default tab-width 8)
 
+;; Remove menu bar
+(menu-bar-mode -1)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Other features ;;;;;;;;;
