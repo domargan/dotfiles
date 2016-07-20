@@ -88,6 +88,10 @@
 ;; Clean whitespaces on save
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
+;; Enable easier cycling through buffers
+(ido-mode 1)
+(setq ido-separator "\n")
+
 (require 'git)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
