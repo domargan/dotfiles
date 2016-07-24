@@ -70,15 +70,7 @@
 ;; Enable easier cycling through buffers
 (ido-mode 1)
 (setq ido-separator "\n")
-
-;; Make *scratch* empty
-(setq initial-scratch-message "")
-
-;; Remove *scratch* buffer
-;;(defun remove-scratch-buffer ()
-;;  (if (get-buffer "*scratch*")
-;;      (kill-buffer "*scratch*")))
-;;(add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
+(setq ido-ignore-buffers '("\\` " "^\*"))
 
 ;; Remove *messages* buffer
 (setq-default message-log-max nil)
