@@ -115,7 +115,6 @@
     (set-frame-parameter
      nil 'fullscreen
      (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
-
 (global-set-key [f11] 'toggle-fullscreen)
 
 ;; Enable visual line mode by default
@@ -124,6 +123,9 @@
 
 ;; Clean whitespaces on save
 (add-hook 'before-save-hook 'whitespace-cleanup)
+
+;; Type y or n instead yes or no
+(fset 'yes-or-no-p 'y-or-n-p)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
