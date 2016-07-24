@@ -27,6 +27,9 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+;; Git
+(require 'git)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Themes, fonts, and layout ;;;;;;;;;
@@ -50,15 +53,49 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
-;; Add vertical buffer on startup
-;;(split-window-vertically)
-
 ;; Indentation settings
 (setq-default indent-tabs-mode t)
 (setq-default tab-width 8)
 
 ;; Remove menu bar
 (menu-bar-mode -1)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Buffers ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Credits: https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening/152151#152151
+
+;; Enable easier cycling through buffers
+(ido-mode 1)
+(setq ido-separator "\n")
+
+;; Make *scratch* empty
+(setq initial-scratch-message "")
+
+;; Remove *scratch* buffer
+;;(defun remove-scratch-buffer ()
+;;  (if (get-buffer "*scratch*")
+;;      (kill-buffer "*scratch*")))
+;;(add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
+
+;; Remove *messages* buffer
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
+
+;; Removes *Completions* buffer
+(add-hook 'minibuffer-exit-hook
+      '(lambda ()
+         (let ((buffer "*Completions*"))
+           (and (get-buffer buffer)
+                (kill-buffer buffer)))))
+
+;; Don't show *Buffer list* when opening multiple files at the same time
+(setq inhibit-startup-buffer-menu t)
+
+;; Show only one active window when opening multiple files at the same time
+(add-hook 'window-setup-hook 'delete-other-windows)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -78,7 +115,7 @@
     (set-frame-parameter
      nil 'fullscreen
      (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
-     
+
 (global-set-key [f11] 'toggle-fullscreen)
 
 ;; Enable visual line mode by default
@@ -88,11 +125,6 @@
 ;; Clean whitespaces on save
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
-;; Enable easier cycling through buffers
-(ido-mode 1)
-(setq ido-separator "\n")
-
-(require 'git)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Go programming essentials ;;;;;;;;;
