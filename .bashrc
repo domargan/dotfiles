@@ -47,5 +47,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 alias emacs='TERM=xterm-256color emacs -nw'
+alias mc='TERM=xterm-256color mc -S zenburn'
 alias pandoc='pandoc --latex-engine=xelatex'
 alias cdgo='cd $GOPATH'
