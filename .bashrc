@@ -26,6 +26,13 @@ if ! shopt -oq posix; then
 fi
 
 
+################
+#### Colors ####
+################
+
+export TERM=xterm-256color
+
+
 #################
 #### Aliases ####
 #################
@@ -42,4 +49,3 @@ fi
 alias emacs='TERM=xterm-256color emacs -nw'
 alias pandoc='pandoc --latex-engine=xelatex'
 alias cdgo='cd $GOPATH'
-
