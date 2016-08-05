@@ -1,17 +1,16 @@
-Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
-       , bgColor = "black"
-       , fgColor = "grey"
-       , position = TopW L 90
+Config { font = "xft:Bitstream Vera Sans Mono:size=14:bold:antialias=true"
+       , bgColor = "#4D4D4D"
+       , fgColor = "#DCDCCC"
+       , position = Top
        , lowerOnStart = True
-       , commands = [ Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+       , commands = [ Run Cpu ["-L","3","-H","50","--normal","#60B48A","--high","#DCA3A3"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
-                    , Run Network "wlan0" ["-L","0","-H","32","--normal","green","--high","red"] 5
-                    , Run Battery ["-t","<left>% / <timeleft>","-L","50","-H","75","-h","green","-n","yell","-l","red"] 10
+                    , Run Network "em1" ["-L","0","-H","32","--normal","#60B48A","--high","#DCA3A3"] 5
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{  %cpu% || %memory% * %swap% || %wlan0% || %battery% || <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{  %cpu% || %memory% * %swap% || %em1% || <fc=#94BFF3>%date%</fc>"
        }
