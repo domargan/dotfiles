@@ -7,7 +7,7 @@ Config { font = "xft:Bitstream Vera Sans Mono:size=14:bold:antialias=true"
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
                     , Run Network "em1" ["-L","0","-H","32","--normal","#60B48A","--high","#DCA3A3"] 5
-                    , Run Date "%a %b %_d %l:%M" "date" 10
+                    , Run Date "%a %b %d %H:%M" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
