@@ -25,4 +25,7 @@ main = do
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
 	, focusedBorderColor = myFocusedBorderColor
-        }
+        } `additionalKeys`
+        [ ((mod4Mask .|. shiftMask, xK_z), spawn "dm-tool lock")
+	]
+
