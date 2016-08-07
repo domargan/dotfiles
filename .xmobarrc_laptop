@@ -1,0 +1,16 @@
+Config { font = "xft:Bitstream Vera Sans Mono:size=14:bold:antialias=true"
+       , bgColor = "#4D4D4D"
+       , fgColor = "#DCDCCC"
+       , position = Top
+       , lowerOnStart = True
+       , commands = [ Run Cpu ["-L","50","-H","85","--normal","#60B48A","--high","#DCA3A3"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Network "wlp4s0" ["-L","0","-H","32","--normal","#60B48A","--high","#DCA3A3"] 5
+		    , Run Battery ["-t","<left>% / <timeleft>","-L","50","-H","75","-h","#60B48A","-n","yell","-l","#DCA3A3"] 10
+                    , Run Date "%a %b %d %H:%M" "date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{  %cpu% || %memory% || %wlp4s0% || %battery% || <fc=#94BFF3>%date%</fc>"
+       }
