@@ -12,6 +12,7 @@
   '(
     zenburn-theme
     fill-column-indicator
+    erc
     auto-complete
     go-mode
     go-eldoc
@@ -119,6 +120,22 @@
 ;; Type y or n instead yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
 
+
+;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;; IRC ;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;
+
+;; Rename server buffers
+(setq erc-rename-buffers t)
+
+;; Hide join, part, and quit messages 
+(setq erc-hide-list '("JOIN" "PART" "QUIT"))
+
+;; Recconect in the background
+(setq erc-join-buffer 'bury)
+
+;; Autojoin channels
+(setq erc-autojoin-channels-alist '(("freenode.net" "#hulk-ri" "linux.hr" "#go-nuts")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Go programming essentials ;;;;;;;;;
