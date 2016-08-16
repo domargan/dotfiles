@@ -135,7 +135,20 @@
 (setq erc-join-buffer 'bury)
 
 ;; Autojoin channels
-(setq erc-autojoin-channels-alist '(("freenode.net" "#hulk-ri" "linux.hr" "#go-nuts")))
+(setq erc-autojoin-channels-alist '(("freenode.net" "#hulk-ri" "#linux.hr" "#go-nuts")))
+
+;; Kill buffers for channels after /part
+(setq erc-kill-buffer-on-part t)
+
+;; Kill buffers for private queries after quitting the server
+(setq erc-kill-queries-on-quit t)
+
+;; Kill buffers for server messages after quitting the server
+(setq erc-kill-server-buffer-on-quit t)
+
+;; utf-8 support
+(setq erc-server-coding-system '(utf-8 . utf-8))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Go programming essentials ;;;;;;;;;
