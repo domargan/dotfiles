@@ -125,6 +125,19 @@
 ;;;;;;;; IRC ;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;
 
+;; Name and email
+(setq erc-user-full-name "Domagoj Margan")
+(setq erc-email-userid "dm@domargan.net")
+
+;; Auto identification    
+(load "~/.ercpass")
+(require 'erc-services)
+(erc-services-mode 1)
+(setq erc-prompt-for-nickserv-password nil)
+(setq erc-nickserv-passwords
+      `((freenode     
+         (("domargan" . ,freenode-domargan-pass)))))
+
 ;; Rename server buffers
 (setq erc-rename-buffers t)
 
@@ -136,6 +149,7 @@
 
 ;; Autojoin channels
 (setq erc-autojoin-channels-alist '(("freenode.net" "#hulk-ri" "#linux.hr" "#go-nuts")))
+(erc :server "irc.freenode.net" :port 6667 :nick "domargan")
 
 ;; Kill buffers for channels after /part
 (setq erc-kill-buffer-on-part t)
