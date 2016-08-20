@@ -175,6 +175,8 @@
 (setq TeX-PDF-mode t)
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(add-hook 'LaTeX-mode-hook
+          (lambda () (LaTeX-fold-mode 1)))
 
 ;; Syntaxchecking
 (require 'flymake)
