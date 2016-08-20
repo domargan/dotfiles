@@ -29,9 +29,6 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-;; Git
-(require 'git)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Themes, fonts, and layout ;;;;;;;;;
