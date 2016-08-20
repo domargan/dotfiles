@@ -14,6 +14,7 @@
     fill-column-indicator
     erc
     auto-complete
+    auctex
     go-mode
     go-eldoc
     go-autocomplete)
