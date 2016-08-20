@@ -169,25 +169,34 @@
 ;;;;;;;;; LaTeX essentials ;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Basic configuration
 (require 'tex-site)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq TeX-save-query nil)
+(setq-default TeX-master nil)
 (setq TeX-PDF-mode t)
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
+;; Syntaxchecking
 (require 'flymake)
-
 (defun flymake-get-tex-args (file-name)
 (list "pdflatex"
 (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
-
 (add-hook 'LaTeX-mode-hook 'flymake-mode)
 
-(setq ispell-program-name "aspell") ; could be ispell as well, depending on your preferences
-(setq ispell-dictionary "english") ; this can obviously be set to any language your spell-checking program supports
-
+;; Spellchecking
+(setq ispell-dictionary "english")
+(setq ispell-program-name "aspell")
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-buffer)
+
+;; External viewers
+(setq TeX-output-view-style
+      (quote
+       (("^pdf$" "." "evince -f %o")
+        ("^html?$" "." "iceweasel %o"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
