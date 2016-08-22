@@ -122,6 +122,30 @@
 (windmove-default-keybindings)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;; Terminal Emulator ;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Alias
+(defalias 'sh 'ansi-term)
+
+;; Set default shell
+(setq explicit-shell-file-name "/bin/bash")
+
+;; Close terminal on exit
+(defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
+  (if (memq (process-status proc) '(signal exit))
+      (let ((buffer (process-buffer proc)))
+        ad-do-it
+        (kill-buffer buffer))
+    ad-do-it))
+(ad-activate 'term-sentinel)
+
+;; Paste into terminal
+(eval-after-load "term"
+  '(define-key term-raw-map (kbd "C-c C-y") 'term-paste))
+
+
 ;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;; IRC ;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;
