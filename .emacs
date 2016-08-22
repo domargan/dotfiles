@@ -11,6 +11,7 @@
 (defvar domargan-packages
   '(
     zenburn-theme
+    powerline
     fill-column-indicator
     erc
     auto-complete
@@ -58,6 +59,10 @@
 
 ;; Remove menu bar
 (menu-bar-mode -1)
+
+;; Mode line 
+(require 'powerline)
+(powerline-vim-theme)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
