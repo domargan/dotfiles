@@ -65,6 +65,7 @@
 (setf rm-blacklist "")
 (sml/setup)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Buffers ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -125,6 +126,12 @@
 
 ;;  Navigate through windows using S-<Arrow>
 (windmove-default-keybindings)
+
+;; Disable C-z
+(global-unset-key "\^z")
+
+;; Disable Insert key
+(put 'overwrite-mode 'disabled t)
 
 ;; Wordcount
 (require 'wc-mode)
