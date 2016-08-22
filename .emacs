@@ -118,7 +118,7 @@
 ;; Type y or n instead yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;;  Navigate through windows using Shift-<Arrow> 
+;;  Navigate through windows using S-<Arrow> 
 (windmove-default-keybindings)
 
 
