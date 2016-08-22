@@ -126,6 +126,10 @@
 ;;  Navigate through windows using S-<Arrow> 
 (windmove-default-keybindings)
 
+;; Wordcount
+(require 'wc-mode)
+(wc-mode 1)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;; Terminal Emulator ;;;;;;;
