@@ -61,6 +61,7 @@
 (menu-bar-mode -1)
 
 ;; Mode line
+(display-time-mode)
 (require 'smart-mode-line)
 (sml/setup)
 
