@@ -4,14 +4,14 @@
 
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
   '(
     zenburn-theme
-    powerline
+    smart-mode-line
     fill-column-indicator
     erc
     auto-complete
@@ -41,7 +41,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Mono" :foundry "unknown" :slant normal :weight normal :height 158 :width normal)))))
- 
+
 (load-theme 'zenburn t)
 
 ;; Display 80 chars indicator
@@ -60,10 +60,9 @@
 ;; Remove menu bar
 (menu-bar-mode -1)
 
-;; Mode line 
-(require 'powerline)
-(powerline-vim-theme)
-
+;; Mode line
+(require 'smart-mode-line)
+(sml/setup)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Buffers ;;;;;;;;;
@@ -83,9 +82,9 @@
 ;; Removes *Completions* buffer
 (add-hook 'minibuffer-exit-hook
       '(lambda ()
-         (let ((buffer "*Completions*"))
-           (and (get-buffer buffer)
-                (kill-buffer buffer)))))
+	 (let ((buffer "*Completions*"))
+	   (and (get-buffer buffer)
+		(kill-buffer buffer)))))
 
 ;; Don't show *Buffer list* when opening multiple files at the same time
 (setq inhibit-startup-buffer-menu t)
@@ -123,7 +122,7 @@
 ;; Type y or n instead yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;;  Navigate through windows using S-<Arrow> 
+;;  Navigate through windows using S-<Arrow>
 (windmove-default-keybindings)
 
 ;; Wordcount
@@ -145,8 +144,8 @@
 (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
   (if (memq (process-status proc) '(signal exit))
       (let ((buffer (process-buffer proc)))
-        ad-do-it
-        (kill-buffer buffer))
+	ad-do-it
+	(kill-buffer buffer))
     ad-do-it))
 (ad-activate 'term-sentinel)
 
@@ -163,19 +162,19 @@
 (setq erc-user-full-name "Domagoj Margan")
 (setq erc-email-userid "dm@domargan.net")
 
-;; Auto identification    
+;; Auto identification
 (load "~/.ercpass")
 (require 'erc-services)
 (erc-services-mode 1)
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-passwords
-      `((freenode     
-         (("domargan" . ,freenode-domargan-pass)))))
+      `((freenode
+	 (("domargan" . ,freenode-domargan-pass)))))
 
 ;; Rename server buffers
 (setq erc-rename-buffers t)
 
-;; Hide join, part, and quit messages 
+;; Hide join, part, and quit messages
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 
 ;; Recconect in the background
@@ -212,7 +211,7 @@
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (add-hook 'LaTeX-mode-hook
-          (lambda () (LaTeX-fold-mode 1)))
+	  (lambda () (LaTeX-fold-mode 1)))
 
 ;; Syntaxchecking
 (require 'flymake)
@@ -231,7 +230,7 @@
 (setq TeX-output-view-style
       (quote
        (("^pdf$" "." "evince -f %o")
-        ("^html?$" "." "iceweasel %o"))))
+	("^html?$" "." "iceweasel %o"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -284,3 +283,9 @@
 ;; Run golint with M-x golint
 (add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
 (require 'golint)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("e87a2bd5abc8448f8676365692e908b709b93f2d3869c42a4371223aab7d9cf8" default))))
