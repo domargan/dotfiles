@@ -12,6 +12,7 @@
   '(
     zenburn-theme
     smart-mode-line
+    windresize
     fill-column-indicator
     erc
     auto-complete
@@ -124,8 +125,11 @@
 ;; Type y or n instead yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;;  Navigate through windows using S-<Arrow>
+;; Navigate through windows using S-<Arrow>
 (windmove-default-keybindings)
+
+;; Resize windows easier
+(require 'windresize)
 
 ;; Disable C-z
 (global-unset-key "\^z")
