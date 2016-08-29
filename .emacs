@@ -66,12 +66,13 @@
 (setq-default indent-tabs-mode t)
 (setq-default tab-width 8)
 
-;; Remove menu bar & toolbar
+;; Remove menu bar, toolbar, scrollbar
 (menu-bar-mode -1)
-(tool-bar-mode -1)
+(if window-system
+    (tool-bar-mode -1)
+    (toggle-scroll-bar -1)
 
-;; Remove scrollbar
-(toggle-scroll-bar -1)
+)
 
 ;; Mode line
 (require 'smart-mode-line)
