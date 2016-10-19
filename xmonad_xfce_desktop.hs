@@ -58,7 +58,7 @@ myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launching and killing programs
     [ ((modMask,                xK_Return   ), spawn "terminator")
-    , ((modMask,                xK_p        ), spawn "xfce4-appfinder")
+    , ((modMask,                xK_o        ), spawn "xfce4-appfinder")
     , ((modMask,                xK_f        ), spawn "thunar")
     , ((modMask,                xK_c        ), kill)
     , ((modMask,                xK_b        ), sendMessage ToggleStruts)
