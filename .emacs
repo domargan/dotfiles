@@ -160,6 +160,9 @@
 (require 'wc-mode)
 (wc-mode 1)
 
+;; Elisp Formatter
+(require 'elisp-format)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;; Terminal Emulator ;;;;;;;
