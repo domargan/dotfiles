@@ -18,8 +18,9 @@
     cursor_color = "#dcdcdc"
     foreground_color = "#dcdccc"
     show_titlebar = False
-    font = DejaVu Sans Mono Bold 12
+    font = DejaVu Sans Mono 14
     background_color = "#3f3f3f"
+    cursor_blink = False
     scrollback_infinite = True
 [layouts]
   [[default]]
