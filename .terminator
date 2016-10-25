@@ -10,17 +10,18 @@
 [keybindings]
 [profiles]
   [[default]]
-    scrollbar_position = hidden
+    foreground_color = "#dcdccc"
     palette = "#4d4d4d:#705050:#60b48a:#f0dfaf:#506070:#dc8cc3:#8cd0d3:#dcdccc:#709080:#dca3a3:#c3bf9f:#e0cf9f:#94bff3:#ec93d3:#93e0e3:#ffffff"
     background_image = None
     background_darkness = 0.9
     use_system_font = False
     cursor_color = "#dcdcdc"
-    foreground_color = "#dcdccc"
-    show_titlebar = False
-    font = DejaVu Sans Mono 14
-    background_color = "#3f3f3f"
     cursor_blink = False
+    scrollbar_position = hidden
+    show_titlebar = False
+    font = Terminus Bold 14
+    background_color = "#3f3f3f"
+    allow_bold = False
     scrollback_infinite = True
 [layouts]
   [[default]]
