@@ -36,11 +36,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t
-	     (:family "DejaVu Sans Mono"
-		      :foundry "unknown"
+	     (:family "Terminus"
+		      :foundry "xos4"
 		      :slant normal
-		      :weight bold
-		      :height 118
+		      :weight normal
+		      :height 128
 		      :width normal
 		      )))))
 
