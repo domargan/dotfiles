@@ -57,7 +57,7 @@ pbManageHook = composeAll $ concat
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launching and killing programs
-    [ ((modMask,                xK_Return   ), spawn "terminator")
+    [ ((modMask,                xK_Return   ), spawn "urxvt")
     , ((modMask,                xK_o        ), spawn "xfce4-appfinder")
     , ((modMask,                xK_f        ), spawn "thunar")
     , ((modMask,                xK_c        ), kill)
