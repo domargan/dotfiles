@@ -1,7 +1,7 @@
 urxvt*termName: rxvt-256color
 
 ! Disable useless stuff
-URxvt.iso14755: true
+URxvt.iso14755: false
 URxvt.iso14755_52: false
 
 ! Font
