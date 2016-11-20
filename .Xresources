@@ -2,8 +2,7 @@
 URxvt*termName: rxvt-256color
 
 ! Extensions
-URxvt.perl-ext-common: default,matcher
-
+URxvt.perl-ext-common: default,matcher,keyboard-select
 
 ! Disable useless stuff
 URxvt.iso14755: false
@@ -20,6 +19,10 @@ URxvt.keysym.C-question: resize-font:show
 URxvt*scrollWithBuffer: true
 URxvt*scrollBar: false
 URxvt.saveLines: 65535
+
+! Use keyboard shortcuts to select and copy text
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
 
 ! Color theme (Zenburn)
 URxvt*xftAntialias: true
