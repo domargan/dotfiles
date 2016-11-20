@@ -13,7 +13,7 @@ URxvt.keysym.C-question: resize-font:show
 
 ! Scroll
 URxvt*scrollWithBuffer: true
-urxvt*scrollBar: false
+Urxvt*scrollBar: false
 URxvt.saveLines: 65535
 
 ! Color theme (Zenburn)
