@@ -2,7 +2,7 @@
 URxvt*termName: rxvt-256color
 
 ! Extensions
-URxvt.perl-ext-common: default,matcher,keyboard-select
+URxvt.perl-ext-common: default,keyboard-select,url-select
 
 ! Disable useless stuff
 URxvt.iso14755: false
@@ -50,4 +50,5 @@ URxvt*color15: #ffffff
 
 ! Open URLs with Firefox
 URxvt.url-launcher: firefox
+URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.matcher.button: 1
