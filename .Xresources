@@ -1,3 +1,4 @@
+! Set $TERM variable
 urxvt*termName: rxvt-256color
 
 ! Disable useless stuff
