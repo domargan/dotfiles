@@ -1,5 +1,5 @@
 ! Set $TERM variable
-urxvt*termName: rxvt-256color
+URxvt*termName: rxvt-256color
 
 ! Disable useless stuff
 URxvt.iso14755: false
@@ -14,7 +14,7 @@ URxvt.keysym.C-question: resize-font:show
 
 ! Scroll
 URxvt*scrollWithBuffer: true
-Urxvt*scrollBar: false
+URxvt*scrollBar: false
 URxvt.saveLines: 65535
 
 ! Color theme (Zenburn)
