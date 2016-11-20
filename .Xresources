@@ -1,6 +1,10 @@
 ! Set $TERM variable
 URxvt*termName: rxvt-256color
 
+! Extensions
+URxvt.perl-ext-common: default,matcher
+
+
 ! Disable useless stuff
 URxvt.iso14755: false
 URxvt.iso14755_52: false
@@ -42,6 +46,5 @@ URxvt*color14: #93e0e3
 URxvt*color15: #ffffff
 
 ! Open URLs with Firefox
-URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: firefox
 URxvt.matcher.button: 1
