@@ -2,7 +2,7 @@
 URxvt*termName: rxvt-256color
 
 ! Extensions
-URxvt.perl-ext-common: default,keyboard-select,url-select
+URxvt.perl-ext-common: default,resize-font,keyboard-select,url-select
 
 ! Disable useless stuff
 URxvt.iso14755: false
@@ -10,10 +10,10 @@ URxvt.iso14755_52: false
 
 ! Font
 URxvt.font: xft:terminus:size=20
-URxvt.keysym.C-minus: resize-font:smaller
-URxvt.keysym.C-plus: resize-font:bigger
-URxvt.keysym.C-equal: resize-font:reset
-URxvt.keysym.C-question: resize-font:show
+URxvt.keysym.C-plus: perl:resize-font:bigger
+URxvt.keysym.C-minus: perl:resize-font:smaller
+URxvt.keysym.C-equal: perl:resize-font:reset
+URxvt.keysym.C-question: perl:resize-font:show
 
 ! Scroll
 URxvt*scrollWithBuffer: true
