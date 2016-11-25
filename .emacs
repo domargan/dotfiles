@@ -25,6 +25,9 @@
     )
   )
 
+;; Manual package loading
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Themes, fonts, and layout ;;;;;;;;;
