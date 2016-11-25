@@ -166,6 +166,10 @@
 ;; Elisp Formatter
 (require 'elisp-format)
 
+;; Pomodoro
+(load "pomodoro")
+(require 'pomodoro)
+(pomodoro-add-to-mode-line)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;; Terminal Emulator ;;;;;;;
