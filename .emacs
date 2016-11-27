@@ -8,7 +8,7 @@
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
-  '(zenburn-theme smart-mode-line windresize fill-column-indicator erc auto-complete wc-mode auctex
+  '(zenburn-theme smart-mode-line windresize fill-column-indicator drag-stuff erc auto-complete wc-mode auctex
 		  go-mode go-eldoc go-autocomplete elisp-format)
   "Install all the packages!"
   )
@@ -169,6 +169,10 @@
 ;; Wordcount
 (require 'wc-mode)
 (wc-mode 1)
+
+;; Drag stuff 
+(drag-stuff-global-mode 1)
+(drag-stuff-define-keys)
 
 ;; Elisp Formatter
 (require 'elisp-format)
