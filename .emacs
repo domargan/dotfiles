@@ -178,6 +178,7 @@
 (require 'pomodoro)
 (pomodoro-add-to-mode-line)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;; Terminal Emulator ;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -230,11 +231,11 @@
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 
 ;; Recconect in the background
-					; (setq erc-join-buffer 'bury)
+;; (setq erc-join-buffer 'bury)
 
 ;; Autojoin channels
-					; (setq erc-autojoin-channels-alist '(("freenode.net" "#hulk-ri" "#linux.hr" "#go-nuts")))
-					; (erc :server "irc.freenode.net" :port 6667 :nick "domargan")
+;; (setq erc-autojoin-channels-alist '(("freenode.net" "#hulk-ri" "#linux.hr" "#go-nuts")))
+;; (erc :server "irc.freenode.net" :port 6667 :nick "domargan")
 
 ;; Kill buffers for channels after /part
 (setq erc-kill-buffer-on-part t)
