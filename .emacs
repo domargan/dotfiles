@@ -8,8 +8,8 @@
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
-  '(zenburn-theme smart-mode-line windresize fill-column-indicator drag-stuff erc auto-complete
-		  direx wc-mode auctex go-direx go-mode go-eldoc go-autocomplete elisp-format)
+  '(auctex auto-complete direx drag-stuff-e elisp-format erc fill-column-indicator go-autocomplete
+	   go-direx go-eldoc go-mode smart-mode-line wc-mode windresize zenburn-theme)
   "Install all the packages!"
   )
 
