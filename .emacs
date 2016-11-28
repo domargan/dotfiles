@@ -58,7 +58,6 @@
 (load-theme 'zenburn t)
 
 ;; Display 80 chars indicator
-(require 'fill-column-indicator)
 (add-hook 'after-change-major-mode-hook 'fci-mode)
 (setq fci-rule-width 5)
 
@@ -78,7 +77,6 @@
   )
 
 ;; Mode line
-(require 'smart-mode-line)
 (setf rm-blacklist "")
 (sml/setup)
 
@@ -272,7 +270,6 @@
 	    ))
 
 ;; Syntaxchecking
-(require 'flymake)
 (defun flymake-get-tex-args (file-name)
   (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name))
   )
