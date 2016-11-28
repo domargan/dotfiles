@@ -152,7 +152,6 @@
 (windmove-default-keybindings)
 
 ;; Resize windows easier
-(require 'windresize)
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
