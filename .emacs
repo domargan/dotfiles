@@ -9,7 +9,7 @@
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
   '(zenburn-theme smart-mode-line windresize fill-column-indicator drag-stuff erc auto-complete
-		  wc-mode auctex go-mode go-eldoc go-autocomplete elisp-format)
+		  direx wc-mode auctex go-direx go-mode go-eldoc go-autocomplete elisp-format)
   "Install all the packages!"
   )
 
@@ -42,7 +42,7 @@
 	     (:family "Hack"
 		      :slant normal
 		      :weight normal
-		      :height 143
+		      :height 123
 		      :width normal
 		      :foundry "simp"
 		      )))))
@@ -165,6 +165,9 @@
 ;; Wordcount
 (require 'wc-mode)
 (wc-mode 1)
+
+;; Direx
+(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root)
 
 ;; Drag stuff
 (drag-stuff-global-mode 1)
