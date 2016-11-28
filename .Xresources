@@ -9,7 +9,7 @@ URxvt.iso14755: false
 URxvt.iso14755_52: false
 
 ! Font
-URxvt.font: xft:terminus:size=20
+URxvt.font: xft:hack:size=16
 URxvt.keysym.C-plus: perl:resize-font:bigger
 URxvt.keysym.C-minus: perl:resize-font:smaller
 URxvt.keysym.C-equal: perl:resize-font:reset
