@@ -8,7 +8,7 @@
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
-  '(auctex auto-complete direx drag-stuff-e elisp-format erc fill-column-indicator go-autocomplete
+  '(auctex auto-complete direx drag-stuff elisp-format erc fill-column-indicator go-autocomplete
 	   go-direx go-eldoc go-mode smart-mode-line wc-mode windresize zenburn-theme)
   "Install all the packages!"
   )
@@ -82,6 +82,45 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; General ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Restore last session on startup
+(desktop-save-mode 1)
+
+;; Open recent files menu entry
+(recentf-mode)
+
+;; Enable fullscreen toggle on X11 with F11
+(defun toggle-fullscreen ()
+  (interactive)
+  (when (eq window-system 'x)
+    (set-frame-parameter nil 'fullscreen
+			 (when (not (frame-parameter nil 'fullscreen))
+			   'fullboth
+			   ))
+    )
+  )
+(global-set-key [f11] 'toggle-fullscreen)
+
+;; Disable C-z
+(global-unset-key "\^z")
+
+;; Disable Insert key
+(put 'overwrite-mode 'disabled t)
+
+;; Clean whitespaces on save
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
+;; Type y or n instead yes or no
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Enable visual line mode by default
+(global-visual-line-mode t)
+(global-linum-mode t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Buffers ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -116,37 +155,9 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; Other features ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Open recent files menu entry
-(recentf-mode)
-
-;; Restore last session on startup
-(desktop-save-mode 1)
-
-;; Enable fullscreen toggle on X11 with F11
-(defun toggle-fullscreen ()
-  (interactive)
-  (when (eq window-system 'x)
-    (set-frame-parameter nil 'fullscreen
-			 (when (not (frame-parameter nil 'fullscreen))
-			   'fullboth
-			   ))
-    )
-  )
-(global-set-key [f11] 'toggle-fullscreen)
-
-;; Enable visual line mode by default
-(global-visual-line-mode t)
-(global-linum-mode t)
-
-;; Clean whitespaces on save
-(add-hook 'before-save-hook 'whitespace-cleanup)
-
-;; Type y or n instead yes or no
-(fset 'yes-or-no-p 'y-or-n-p)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Windows ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Navigate through windows using S-<Arrow>
 (windmove-default-keybindings)
@@ -156,31 +167,6 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
-
-;; Disable C-z
-(global-unset-key "\^z")
-
-;; Disable Insert key
-(put 'overwrite-mode 'disabled t)
-
-;; Wordcount
-(require 'wc-mode)
-(wc-mode 1)
-
-;; Direx
-(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root)
-
-;; Drag stuff
-(drag-stuff-global-mode 1)
-(drag-stuff-define-keys)
-
-;; Elisp Formatter
-(require 'elisp-format)
-
-;; Pomodoro
-(load "pomodoro")
-(require 'pomodoro)
-(pomodoro-add-to-mode-line)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -252,6 +238,33 @@
 
 ;; utf-8 support
 (setq erc-server-coding-system '(utf-8 . utf-8))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Other features ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Projectile
+(projectile-global-mode)
+
+;; Wordcount
+(require 'wc-mode)
+(wc-mode 1)
+
+;; Pomodoro
+(load "pomodoro")
+(require 'pomodoro)
+(pomodoro-add-to-mode-line)
+
+;; Direx
+(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root)
+
+;; Drag stuff
+(drag-stuff-global-mode 1)
+(drag-stuff-define-keys)
+
+;; Elisp Formatter
+(require 'elisp-format)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
