@@ -114,6 +114,9 @@
 ;; Show only one active window when opening multiple files at the same time
 (add-hook 'window-setup-hook 'delete-other-windows)
 
+;; Enable navigation in the same buffer with dired
+(put 'dired-find-alternate-file 'disabled nil)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Other features ;;;;;;;;;
