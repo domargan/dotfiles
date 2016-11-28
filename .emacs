@@ -8,8 +8,8 @@
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
-  '(zenburn-theme smart-mode-line windresize fill-column-indicator drag-stuff erc auto-complete wc-mode auctex
-		  go-mode go-eldoc go-autocomplete elisp-format)
+  '(zenburn-theme smart-mode-line windresize fill-column-indicator drag-stuff erc auto-complete
+		  wc-mode auctex go-mode go-eldoc go-autocomplete elisp-format)
   "Install all the packages!"
   )
 
@@ -39,12 +39,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t
-	     (:family "Terminus"
-		      :foundry "xos4"
+	     (:family "Hack"
 		      :slant normal
 		      :weight normal
-		      :height 128
+		      :height 143
 		      :width normal
+		      :foundry "simp"
 		      )))))
 
 (custom-set-variables
@@ -170,7 +170,7 @@
 (require 'wc-mode)
 (wc-mode 1)
 
-;; Drag stuff 
+;; Drag stuff
 (drag-stuff-global-mode 1)
 (drag-stuff-define-keys)
 
