@@ -258,6 +258,9 @@
 ;; Projectile
 (projectile-global-mode)
 
+;; Highlight cursor on every scroll
+(beacon-mode 1)
+
 ;; Indentation guide
 (indent-guide-global-mode)
 
