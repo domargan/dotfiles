@@ -1,3 +1,10 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;               GNU Emacs config              ;;
+;;            Author: Domagoj Margan           ;;
+;;            Email: dm@domargan.net           ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Package managment ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -9,8 +16,9 @@
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
   '(auctex auto-complete auto-package-update beacon direx drag-stuff elisp-format erc
-	   fill-column-indicator go-autocomplete go-direx go-eldoc go-mode google-this helm
-	   indent-guide smart-mode-line symon org wc-mode windresize zenburn-theme)
+	   fill-column-indicator flx-ido go-autocomplete go-direx go-eldoc go-mode google-this ido
+	   ido-ubiquitous ido-vertical-mode indent-guide smart-mode-line symon org wc-mode
+	   windresize zenburn-theme)
   "Install all the packages!"
   )
 
@@ -33,74 +41,12 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; Themes, fonts, and layout ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t
-	     (:family "Hack"
-		      :slant normal
-		      :weight normal
-		      :height 123
-		      :width normal
-		      :foundry "simp"
-		      )))))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("e87a2bd5abc8448f8676365692e908b709b93f2d3869c42a4371223aab7d9cf8"
-			      default))))
-
-(load-theme 'zenburn t)
-
-;; Display 80 chars indicator
-(add-hook 'after-change-major-mode-hook 'fci-mode)
-(setq fci-rule-width 5)
-
-;; Remove splash screen
-(setq inhibit-splash-screen t)
-(setq inhibit-startup-message t)
-
-;; Indentation settings
-(setq-default indent-tabs-mode t)
-(setq-default tab-width 8)
-
-;; Remove menu bar, toolbar, scrollbar
-(menu-bar-mode -1)
-(if window-system
-    (tool-bar-mode -1)
-  (toggle-scroll-bar -1)
-  )
-
-;; Mode line
-(setf rm-blacklist "")
-(sml/setup)
-
-;; Display which column the cursor is currently on
-(column-number-mode 1)
-
-;; System monitor
-(setq symon-refresh-rate 1)
-(symon-mode 1)
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; General ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Restore last session on startup
 (desktop-save-mode 1)
-
-;; Open recent files menu entry
-(recentf-mode)
 
 ;; Enable fullscreen toggle on X11 with F11
 (defun toggle-fullscreen ()
@@ -126,22 +72,124 @@
 ;; Type y or n instead yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; Indentation settings
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 8)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Themes and fonts ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t
+	     (:family "Hack"
+		      :slant normal
+		      :weight normal
+		      :height 123
+		      :width normal
+		      :foundry "simp"
+		      )))))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("e87a2bd5abc8448f8676365692e908b709b93f2d3869c42a4371223aab7d9cf8"
+			      default))))
+
+(load-theme 'zenburn t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;; Interface and layout modifications ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Remove splash screen
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+
+;; Remove menu bar, toolbar, scrollbar
+(menu-bar-mode -1)
+(if window-system
+    (tool-bar-mode -1)
+  (toggle-scroll-bar -1)
+  )
+
+;; Open recent files menu entry
+(recentf-mode)
+
+;; Mode line
+(setf rm-blacklist "")
+(sml/setup)
+
+;; Display which column the cursor is currently on
+(column-number-mode 1)
+
+;; Display system monitor
+(setq symon-refresh-rate 1)
+(symon-mode 1)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Visual ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Highlight cursor on every scroll
+(beacon-mode 1)
+
+;; See matching pairs of parentheses
+(show-paren-mode 1)
+
+;; Enable indentation guide
+(indent-guide-global-mode)
+
+;; Display 80 chars indicator
+(define-globalized-minor-mode global-fci-mode fci-mode
+  (lambda ()
+    (fci-mode 1)
+    )
+  )
+(global-fci-mode 1)
+(setq fci-rule-width 5)
+(setq fci-rule-column 80)
+
 ;; Enable visual line mode by default
 (global-visual-line-mode t)
 (global-linum-mode t)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; Buffers ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Navigation and user interaction ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Credits: https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening/152151#152151
-
-;; Enable easier cycling through buffers
+;; Enable and setup IDO everywhere
 (ido-mode 1)
+(ido-everywhere 1)
+(ido-ubiquitous-mode 1)
+(ido-vertical-mode 1)
+(flx-ido-mode 1)
 (setq ido-separator "\n")
 (setq ido-ignore-buffers '("\\` " "^\*"))
 
+;; Enable smex
+(global-set-key (kbd "M-x") 'smex)
+
+;; Enable projectile
+(projectile-global-mode)
+
+;; Enable directory tree navigation
+(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root)
+
+;; Enable navigation in the same buffer with dired
+(put 'dired-find-alternate-file 'disabled nil)
+
+;; Credits: https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening/152151#152151
 ;; Remove *messages* buffer
 (setq-default message-log-max nil)
 (kill-buffer "*Messages*")
@@ -161,14 +209,6 @@
 
 ;; Show only one active window when opening multiple files at the same time
 (add-hook 'window-setup-hook 'delete-other-windows)
-
-;; Enable navigation in the same buffer with dired
-(put 'dired-find-alternate-file 'disabled nil)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; Windows ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Navigate through windows using S-<Arrow>
 (windmove-default-keybindings)
@@ -251,27 +291,13 @@
 (setq erc-server-coding-system '(utf-8 . utf-8))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; Other features ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Additional features ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Helm
-(helm-mode 1)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-
-;; Projectile
-(projectile-global-mode)
-
-;; Highlight cursor on every scroll
-(beacon-mode 1)
-
-;; See matching pairs of parentheses
-(show-paren-mode 1)
-
-;; Indentation guide
-(indent-guide-global-mode)
+;; Drag stuff
+(drag-stuff-global-mode 1)
+(drag-stuff-define-keys)
 
 ;; Wordcount
 (require 'wc-mode)
@@ -284,13 +310,6 @@
 (load "pomodoro")
 (require 'pomodoro)
 (pomodoro-add-to-mode-line)
-
-;; Direx
-(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root)
-
-;; Drag stuff
-(drag-stuff-global-mode 1)
-(drag-stuff-define-keys)
 
 ;; Elisp Formatter
 (require 'elisp-format)
