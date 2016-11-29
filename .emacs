@@ -8,7 +8,7 @@
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
-  '(auctex auto-complete direx drag-stuff elisp-format erc fill-column-indicator go-autocomplete
+  '(auctex auto-complete auto-package-update direx drag-stuff elisp-format erc fill-column-indicator go-autocomplete
 	   go-direx go-eldoc go-mode smart-mode-line wc-mode windresize zenburn-theme)
   "Install all the packages!"
   )
@@ -24,6 +24,9 @@
     (package-install package)
     )
   )
+
+ ;; Automatically update packages
+(auto-package-update-maybe)
 
 ;; Manual package loading
 (add-to-list 'load-path "~/.emacs.d/lisp/")
