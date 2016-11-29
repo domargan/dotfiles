@@ -8,8 +8,9 @@
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
-  '(auctex auto-complete auto-package-update direx drag-stuff elisp-format erc fill-column-indicator go-autocomplete
-	   go-direx go-eldoc go-mode google-this helm indent-guide smart-mode-line symon wc-mode windresize zenburn-theme)
+  '(auctex auto-complete auto-package-update beacon direx drag-stuff elisp-format erc
+	   fill-column-indicator go-autocomplete go-direx go-eldoc go-mode google-this helm
+	   indent-guide smart-mode-line symon org wc-mode windresize zenburn-theme)
   "Install all the packages!"
   )
 
@@ -25,7 +26,7 @@
     )
   )
 
- ;; Automatically update packages
+;; Automatically update packages
 (auto-package-update-maybe)
 
 ;; Manual package loading
