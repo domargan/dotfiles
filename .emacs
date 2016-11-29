@@ -9,7 +9,7 @@
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
   '(auctex auto-complete auto-package-update direx drag-stuff elisp-format erc fill-column-indicator go-autocomplete
-	   go-direx go-eldoc go-mode indent-guide smart-mode-line symon wc-mode windresize zenburn-theme)
+	   go-direx go-eldoc go-mode google-this indent-guide smart-mode-line symon wc-mode windresize zenburn-theme)
   "Install all the packages!"
   )
 
@@ -260,6 +260,9 @@
 ;; Wordcount
 (require 'wc-mode)
 (wc-mode 1)
+
+;; Google this
+(google-this-mode 1)
 
 ;; Pomodoro
 (load "pomodoro")
