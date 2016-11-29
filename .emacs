@@ -84,6 +84,9 @@
 (setf rm-blacklist "")
 (sml/setup)
 
+;; Display which column the cursor is currently on
+(column-number-mode 1)
+
 ;; System monitor
 (setq symon-refresh-rate 1)
 (symon-mode 1)
@@ -263,6 +266,9 @@
 
 ;; Highlight cursor on every scroll
 (beacon-mode 1)
+
+;; See matching pairs of parentheses
+(show-paren-mode 1)
 
 ;; Indentation guide
 (indent-guide-global-mode)
