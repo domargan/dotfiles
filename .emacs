@@ -9,7 +9,7 @@
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
   '(auctex auto-complete auto-package-update direx drag-stuff elisp-format erc fill-column-indicator go-autocomplete
-	   go-direx go-eldoc go-mode smart-mode-line wc-mode windresize zenburn-theme)
+	   go-direx go-eldoc go-mode smart-mode-line symon wc-mode windresize zenburn-theme)
   "Install all the packages!"
   )
 
@@ -82,6 +82,10 @@
 ;; Mode line
 (setf rm-blacklist "")
 (sml/setup)
+
+;; System monitor
+(setq symon-refresh-rate 1)
+(symon-mode 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
