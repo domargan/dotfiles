@@ -17,7 +17,7 @@
 (defvar domargan-packages
   '(auctex auto-complete auto-package-update beacon direx drag-stuff elisp-format erc
 	   fill-column-indicator flx-ido go-autocomplete go-direx go-eldoc go-mode google-this ido
-	   ido-ubiquitous ido-vertical-mode indent-guide smart-mode-line symon org wc-mode
+	   ido-ubiquitous ido-vertical-mode indent-guide smart-mode-line smex symon org wc-mode
 	   windresize zenburn-theme)
   "Install all the packages!"
   )
