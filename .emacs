@@ -60,6 +60,10 @@
   )
 (global-set-key [f11] 'toggle-fullscreen)
 
+;; Increase or decrease font in GUI with mouse scroll
+(global-set-key [C-mouse-4] 'text-scale-increase)
+(global-set-key [C-mouse-5] 'text-scale-decrease)
+
 ;; Disable C-z
 (global-unset-key "\^z")
 
