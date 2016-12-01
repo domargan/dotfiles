@@ -18,7 +18,7 @@
   '(auctex auto-complete auto-package-update beacon direx drag-stuff elisp-format erc
 	   fill-column-indicator flx-ido flycheck go-autocomplete go-direx go-eldoc go-mode
 	   google-this ido ido-ubiquitous ido-vertical-mode indent-guide smart-mode-line smex symon
-	   org wc-mode windresize zenburn-theme)
+	   org wc-mode windresize zenburn-theme zoom-window)
   "Install all the packages!"
   )
 
@@ -233,6 +233,10 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+
+;; Zoom window with C-x C-z
+(global-set-key (kbd "C-x C-z") 'zoom-window-zoom)
+(setq zoom-window-mode-line-color "DarkGreen")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
