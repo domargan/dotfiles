@@ -15,10 +15,10 @@
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
-  '(auctex auto-complete auto-package-update beacon direx drag-stuff elisp-format erc
+  '(auctex ace-jump-mode auto-complete auto-package-update beacon direx drag-stuff elisp-format erc
 	   fill-column-indicator flx-ido flycheck go-autocomplete go-direx go-eldoc go-mode
 	   google-this ido ido-ubiquitous ido-vertical-mode indent-guide smart-mode-line smex symon
-	   org wc-mode windresize zenburn-theme zoom-window)
+	   org visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
   "Install all the packages!"
   )
 
@@ -182,6 +182,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Navigation and user interaction ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Move the cursor with ace-jump-mode
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+;; Use visual-regexp instead of the built-in isearch
+(define-key global-map (kbd "C-r") 'vr/isearch-backward)
+(define-key global-map (kbd "C-s") 'vr/isearch-forward)
+;; Use visual-regexp for search-and-replace
+(define-key global-map (kbd "C-c r") 'vr/replace)
+(define-key global-map (kbd "C-c q") 'vr/query-replace)
 
 ;; Enable and setup IDO everywhere
 (ido-mode 1)
