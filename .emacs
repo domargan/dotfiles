@@ -83,6 +83,14 @@
 ;; Enable global syntax checking
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+;; Spellchecking settings
+(setq ispell-dictionary "english")
+(setq ispell-program-name "aspell")
+
+;; Enable auto-complete
+(ac-config-default)
+(require 'auto-complete-config)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Themes and fonts ;;;;;;;;;
@@ -340,27 +348,13 @@
 	    (LaTeX-fold-mode 1)
 	    ))
 
-;; Spellchecking
-(setq ispell-dictionary "english")
-(setq ispell-program-name "aspell")
+;; Enable spellchecking in .tex docs
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
-;; RefTeX
-(autoload 'reftex-mode "reftex" "RefTeX Minor Mode" t)
-(autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
-(autoload 'reftex-citation "reftex-cite" "Make citation" nil)
-(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
-(add-hook 'latex-mode-hook 'turn-on-reftex)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq LaTeX-eqnarray-label "eq" LaTeX-equation-label "eq" LaTeX-figure-label "fig" LaTeX-table-label
-      "tab" LaTeX-myChapter-label "chap" TeX-auto-save t TeX-newline-function
-      'reindent-then-newline-and-indent TeX-parse-self t TeX-style-path '("style/" "auto/"
-									  "/usr/share/emacs24/site-lisp/auctex/style/" "/var/lib/auctex/emacs24/" "/usr/local/share/emacs/site-lisp/auctex/style/") LaTeX-section-hook '(LaTeX-section-heading LaTeX-section-title LaTeX-section-toc LaTeX-section-section LaTeX-section-label))
-
 ;; External viewers
 (setq TeX-output-view-style (quote (("^pdf$" "." "evince -f %o")
-("^html?$" "." "iceweasel %o"))))
+("^html?$" "." "firefox %o"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -393,9 +387,7 @@
 )
 (add-hook 'go-mode-hook 'go-mode-setup)
 
-;; Load auto-complete (with gocode)
-(ac-config-default)
-(require 'auto-complete-config)
+;; Load auto-complete for Go files (with gocode)
 (require 'go-autocomplete)
 
 ;; Run golint with M-x golint
