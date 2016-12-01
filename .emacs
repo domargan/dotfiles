@@ -15,7 +15,7 @@
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
-  '(auctex ace-jump-mode auto-complete auto-package-update beacon direx drag-stuff elisp-format erc
+  '(auctex ace-jump-mode auto-complete auto-package-update autopair beacon direx drag-stuff elisp-format erc
 	   fill-column-indicator flx-ido flycheck go-autocomplete go-direx go-eldoc go-mode
 	   google-this ido ido-ubiquitous ido-vertical-mode indent-guide smart-mode-line smex symon
 	   org visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
@@ -90,6 +90,9 @@
 ;; Enable auto-complete
 (ac-config-default)
 (require 'auto-complete-config)
+
+;; Close brackets automatically
+(autopair-global-mode 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -247,6 +250,9 @@
 ;; Zoom window with C-x C-z
 (global-set-key (kbd "C-x C-z") 'zoom-window-zoom)
 (setq zoom-window-mode-line-color "DarkGreen")
+
+;; Enable undoing window configurations
+(winner-mode 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
