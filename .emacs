@@ -416,5 +416,9 @@
 (require 'go-autocomplete)
 
 ;; Run golint with M-x golint
-(add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
+(add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/golang/lint/misc/emacs"))
 (require 'golint)
+
+;; Check syntax with flycheck
+(add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
+(require 'go-flycheck)
