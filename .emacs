@@ -94,6 +94,11 @@
 ;; Close brackets automatically
 (autopair-global-mode 1)
 
+;; Don't ask for confirmation for region case conversion
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Themes and fonts ;;;;;;;;;
