@@ -16,9 +16,9 @@
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
   '(auctex auto-complete auto-package-update beacon direx drag-stuff elisp-format erc
-	   fill-column-indicator flx-ido go-autocomplete go-direx go-eldoc go-mode google-this ido
-	   ido-ubiquitous ido-vertical-mode indent-guide smart-mode-line smex symon org wc-mode
-	   windresize zenburn-theme)
+	   fill-column-indicator flx-ido flycheck go-autocomplete go-direx go-eldoc go-mode
+	   google-this ido ido-ubiquitous ido-vertical-mode indent-guide smart-mode-line smex symon
+	   org wc-mode windresize zenburn-theme)
   "Install all the packages!"
   )
 
@@ -80,6 +80,9 @@
 (setq-default indent-tabs-mode t)
 (setq-default tab-width 8)
 
+;; Enable global syntax checking
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Themes and fonts ;;;;;;;;;
@@ -140,9 +143,9 @@
 (symon-mode 1)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; Visual ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Visual Helpers ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Highlight cursor on every scroll
 (beacon-mode 1)
@@ -336,12 +339,6 @@
 	  (lambda ()
 	    (LaTeX-fold-mode 1)
 	    ))
-
-;; Syntaxchecking
-(defun flymake-get-tex-args (file-name)
-  (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name))
-  )
-(add-hook 'LaTeX-mode-hook 'flymake-mode)
 
 ;; Spellchecking
 (setq ispell-dictionary "english")
