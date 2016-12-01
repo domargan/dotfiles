@@ -369,48 +369,31 @@
 
 ;; Credits: http://arenzana.org/2015/Emacs-for-Go/
 
-;; Load Go-specific language syntax
-(defun go-mode-setup ()
-(go-eldoc-setup)
-)
-(add-hook 'go-mode-hook 'go-mode-setup)
+;; Prerequisites:
+;; go get -u golang.org/x/tools/cmd/goimports
+;; go get -u github.com/golang/lint/golint
+;; go get -u github.com/kisielk/errcheck
+;; go get -u golang.org/x/tools/cmd/godoc
+;; go get -u github.com/rogpeppe/godef
+;; go get -u github.com/nsf/gocode
+;; go get -u github.com/dougm/goflymake
 
-;; Format with fmt before saving
 (defun go-mode-setup ()
-(go-eldoc-setup)
-(add-hook 'before-save-hook 'gofmt-before-save)
-)
-(add-hook 'go-mode-hook 'go-mode-setup)
-
-;; Take care of imports
-(defun go-mode-setup ()
-(go-eldoc-setup)
-(setq gofmt-command "goimports")
-(add-hook 'before-save-hook 'gofmt-before-save)
-)
-(add-hook 'go-mode-hook 'go-mode-setup)
-
-;; Show function definition when calling godef-jump
-(defun go-mode-setup ()
-(go-eldoc-setup)
-(setq gofmt-command "goimports")
-(add-hook 'before-save-hook 'gofmt-before-save)
-(local-set-key (kbd "M-.") 'godef-jump)
-)
-(add-hook 'go-mode-hook 'go-mode-setup)
-
 ;; Custom Compile Command
-(defun go-mode-setup ()
-(setq compile-command "go build -v -race && go test -v -race && go vet && golint && errcheck")
+  (setq compile-command "go build -v -race && go test -v -race && go vet && golint && errcheck")
 (define-key (current-local-map) "\C-c\C-c" 'compile)
-(go-eldoc-setup)
+;; Take care of imports
 (setq gofmt-command "goimports")
+;; Format with fmt before saving
 (add-hook 'before-save-hook 'gofmt-before-save)
+;; Provide eldoc for Go
+(go-eldoc-setup)
+;; Show function definition when calling godef-jump
 (local-set-key (kbd "M-.") 'godef-jump)
 )
 (add-hook 'go-mode-hook 'go-mode-setup)
 
-;; Load auto-complete
+;; Load auto-complete (with gocode)
 (ac-config-default)
 (require 'auto-complete-config)
 (require 'go-autocomplete)
