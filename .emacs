@@ -133,11 +133,9 @@
 (setq inhibit-startup-message t)
 
 ;; Remove menu bar, toolbar, scrollbar
-(menu-bar-mode -1)
-(if window-system
-    (tool-bar-mode -1)
-  (toggle-scroll-bar -1)
-  )
+(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; Open recent files menu entry
 (recentf-mode)
