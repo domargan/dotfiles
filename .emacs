@@ -17,8 +17,8 @@
 (defvar domargan-packages
   '(auctex ace-jump-mode auto-complete auto-package-update autopair beacon direx drag-stuff elisp-format erc
 	   fill-column-indicator flx-ido flycheck go-autocomplete go-direx go-eldoc go-mode
-	   google-this ido ido-ubiquitous ido-vertical-mode indent-guide smart-mode-line smex symon
-	   org visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
+	   google-this highlight-escape-sequences ido ido-ubiquitous ido-vertical-mode indent-guide smart-mode-line smex symon synosaurus
+	   org undo-tree visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
   "Install all the packages!"
   )
 
@@ -149,8 +149,12 @@
 (setf rm-blacklist "")
 (sml/setup)
 
-;; Display which column the cursor is currently on
+;; Display which line and column the cursor is currently on
+(line-number-mode 1)
 (column-number-mode 1)
+
+;; Display file size on mode line
+(size-indication-mode t)
 
 ;; Display system monitor
 (setq symon-refresh-rate 1)
@@ -163,6 +167,9 @@
 
 ;; Highlight cursor on every scroll
 (beacon-mode 1)
+
+;; Highlight escape sequences
+(hes-mode 1)
 
 ;; See matching pairs of parentheses
 (show-paren-mode 1)
@@ -333,6 +340,9 @@
 ;;;;;;;;; Additional features ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Undo tree
+(global-undo-tree-mode 1)
+
 ;; Drag stuff
 (drag-stuff-global-mode 1)
 (drag-stuff-define-keys)
@@ -340,6 +350,9 @@
 ;; Wordcount
 (require 'wc-mode)
 (wc-mode 1)
+
+;; Find synonyms with Synosaurus (requires WordNet)
+(synosaurus-mode 1)
 
 ;; Google this
 (google-this-mode 1)
