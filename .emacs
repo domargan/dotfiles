@@ -99,6 +99,9 @@
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
+;; Set SSH as default remote work protocol
+(setq tramp-default-method "ssh")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Themes and fonts ;;;;;;;;;
