@@ -330,6 +330,19 @@
 (setq erc-server-coding-system '(utf-8 . utf-8))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Org Mode ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Make org-mode the default mode for .org, .org_archive, and .txt files
+(add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
+
+;; Define key bindings
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Additional features ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
