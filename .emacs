@@ -10,29 +10,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'package)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") 1)
 (package-initialize)
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
-  '(auctex ace-jump-mode auto-complete auto-package-update autopair beacon direx drag-stuff elisp-format erc
-	   fill-column-indicator flx-ido flycheck go-autocomplete go-direx go-eldoc go-mode
-	   google-this highlight-escape-sequences ido ido-ubiquitous ido-vertical-mode indent-guide smart-mode-line smex symon synosaurus
-	   org undo-tree visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
-  "Install all the packages!"
-  )
+  '(auctex ace-jump-mode auto-complete auto-package-update autopair beacon direx drag-stuff
+	   elisp-format erc fill-column-indicator flx-ido flycheck go-autocomplete go-direx go-eldoc
+	   go-mode google-this highlight-escape-sequences ido ido-ubiquitous ido-vertical-mode
+	   indent-guide smart-mode-line smex symon synosaurus org undo-tree visual-regexp-steroids
+	   wc-mode windresize zenburn-theme zoom-window)
+  "Install all the packages!")
 
 ;; Fetch the list of packages available
 (unless package-archive-contents
-  (package-refresh-contents)
-  )
+  (package-refresh-contents))
 
 ;; Install the missing packages
 (dolist (package domargan-packages)
   (unless (package-installed-p package)
-    (package-install package)
-    )
-  )
+    (package-install package)))
 
 ;; Automatically update packages
 (auto-package-update-maybe)
@@ -54,10 +51,7 @@
   (when (eq window-system 'x)
     (set-frame-parameter nil 'fullscreen
 			 (when (not (frame-parameter nil 'fullscreen))
-			   'fullboth
-			   ))
-    )
-  )
+			   'fullboth))))
 (global-set-key [f11] 'toggle-fullscreen)
 
 ;; Increase or decrease font in GUI with mouse scroll
@@ -68,7 +62,7 @@
 (global-unset-key "\^z")
 
 ;; Disable Insert key
-(put 'overwrite-mode 'disabled t)
+(put 'overwrite-mode 'disabled 1)
 
 ;; Clean whitespaces on save
 (add-hook 'before-save-hook 'whitespace-cleanup)
@@ -77,7 +71,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Indentation settings
-(setq-default indent-tabs-mode t)
+(setq-default indent-tabs-mode 1)
 (setq-default tab-width 8)
 
 ;; Enable global syntax checking
@@ -118,8 +112,7 @@
 		      :weight normal
 		      :height 123
 		      :width normal
-		      :foundry "simp"
-		      )))))
+		      :foundry "simp")))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -129,7 +122,7 @@
  '(custom-safe-themes (quote ("e87a2bd5abc8448f8676365692e908b709b93f2d3869c42a4371223aab7d9cf8"
 			      default))))
 
-(load-theme 'zenburn t)
+(load-theme 'zenburn 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -137,16 +130,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Remove splash screen
-(setq inhibit-splash-screen t)
-(setq inhibit-startup-message t)
+(setq inhibit-splash-screen 1)
+(setq inhibit-startup-message 1)
 
 ;; Remove menu bar, toolbar, scrollbar
-(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(when (fboundp 'menu-bar-mode)
+  (menu-bar-mode -1))
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
 
 ;; Open recent files menu entry
-(recentf-mode)
+(recentf-mode 1)
 
 ;; Mode line
 (setf rm-blacklist "")
@@ -157,11 +153,11 @@
 (column-number-mode 1)
 
 ;; Display file size on mode line
-(size-indication-mode t)
+(size-indication-mode 1)
 
 ;; Display time
 (setq display-time-default-load-average nil)
-(setq display-time-24hr-format t)
+(setq display-time-24hr-format 1)
 (display-time-mode 1)
 
 ;; Display system monitor
@@ -183,21 +179,19 @@
 (show-paren-mode 1)
 
 ;; Enable indentation guide
-(indent-guide-global-mode)
+(indent-guide-global-mode 1)
 
 ;; Display 80 chars indicator
 (define-globalized-minor-mode global-fci-mode fci-mode
   (lambda ()
-    (fci-mode 1)
-    )
-  )
+    (fci-mode 1)))
 (global-fci-mode 1)
 (setq fci-rule-width 5)
 (setq fci-rule-column 80)
 
 ;; Enable visual line mode by default
-(global-visual-line-mode t)
-(global-linum-mode t)
+(global-visual-line-mode 1)
+(global-linum-mode 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -227,7 +221,7 @@
 (global-set-key (kbd "M-x") 'smex)
 
 ;; Enable projectile
-(projectile-global-mode)
+(projectile-global-mode 1)
 
 ;; Enable directory tree navigation
 (global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root)
@@ -245,13 +239,10 @@
 	  '(lambda ()
 	     (let ((buffer "*Completions*"))
 	       (and (get-buffer buffer)
-		    (kill-buffer buffer)
-		    )
-	       )
-	     ))
+		    (kill-buffer buffer)))))
 
 ;; Don't show *Buffer list* when opening multiple files at the same time
-(setq inhibit-startup-buffer-menu t)
+(setq inhibit-startup-buffer-menu 1)
 
 ;; Show only one active window when opening multiple files at the same time
 (add-hook 'window-setup-hook 'delete-other-windows)
@@ -278,8 +269,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Alias
-(defalias 'sh 'ansi-term
-  )
+(defalias 'sh 'ansi-term)
 
 ;; Set default shell
 (setq explicit-shell-file-name "/bin/bash")
@@ -288,15 +278,11 @@
 (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
   (if (memq (process-status proc)
 	    '(signal
-	      exit
-	      ))
+	      exit))
       (let ((buffer (process-buffer proc)))
 	ad-do-it
-	(kill-buffer buffer)
-	)
-    ad-do-it
-    )
-  )
+	(kill-buffer buffer))
+    ad-do-it))
 (ad-activate 'term-sentinel)
 
 ;; Paste into terminal
@@ -319,7 +305,7 @@
 (setq erc-nickserv-passwords `((freenode (("domargan" . ,freenode-domargan-pass)))))
 
 ;; Rename server buffers
-(setq erc-rename-buffers t)
+(setq erc-rename-buffers 1)
 
 ;; Hide join, part, and quit messages
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
@@ -332,13 +318,13 @@
 ;; (erc :server "irc.freenode.net" :port 6667 :nick "domargan")
 
 ;; Kill buffers for channels after /part
-(setq erc-kill-buffer-on-part t)
+(setq erc-kill-buffer-on-part 1)
 
 ;; Kill buffers for private queries after quitting the server
-(setq erc-kill-queries-on-quit t)
+(setq erc-kill-queries-on-quit 1)
 
 ;; Kill buffers for server messages after quitting the server
-(setq erc-kill-server-buffer-on-quit t)
+(setq erc-kill-server-buffer-on-quit 1)
 
 ;; utf-8 support
 (setq erc-server-coding-system '(utf-8 . utf-8))
@@ -380,17 +366,16 @@
 
 ;; Basic configuration
 (require 'tex-site)
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
+(setq TeX-auto-save 1)
+(setq TeX-parse-self 1)
 (setq TeX-save-query nil)
 (setq-default TeX-master nil)
-(setq TeX-PDF-mode t)
+(setq TeX-PDF-mode 1)
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (add-hook 'LaTeX-mode-hook
 	  (lambda ()
-	    (LaTeX-fold-mode 1)
-	    ))
+	    (LaTeX-fold-mode 1)))
 
 ;; Enable spellchecking in .tex docs
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
@@ -398,7 +383,7 @@
 
 ;; External viewers
 (setq TeX-output-view-style (quote (("^pdf$" "." "evince -f %o")
-("^html?$" "." "firefox %o"))))
+				    ("^html?$" "." "firefox %o"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -417,18 +402,17 @@
 ;; go get -u github.com/dougm/goflymake
 
 (defun go-mode-setup ()
-;; Custom Compile Command
+  ;; Custom Compile Command
   (setq compile-command "go build -v -race && go test -v -race && go vet && golint && errcheck")
-(define-key (current-local-map) "\C-c\C-c" 'compile)
-;; Take care of imports
-(setq gofmt-command "goimports")
-;; Format with fmt before saving
-(add-hook 'before-save-hook 'gofmt-before-save)
-;; Provide eldoc for Go
-(go-eldoc-setup)
-;; Show function definition when calling godef-jump
-(local-set-key (kbd "M-.") 'godef-jump)
-)
+  (define-key (current-local-map) "\C-c\C-c" 'compile)
+  ;; Take care of imports
+  (setq gofmt-command "goimports")
+  ;; Format with fmt before saving
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  ;; Provide eldoc for Go
+  (go-eldoc-setup)
+  ;; Show function definition when calling godef-jump
+  (local-set-key (kbd "M-.") 'godef-jump))
 (add-hook 'go-mode-hook 'go-mode-setup)
 
 ;; Load auto-complete for Go files (with gocode)
