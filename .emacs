@@ -159,6 +159,11 @@
 ;; Display file size on mode line
 (size-indication-mode t)
 
+;; Display time
+(setq display-time-default-load-average nil)
+(setq display-time-24hr-format t)
+(display-time-mode 1)
+
 ;; Display system monitor
 (setq symon-refresh-rate 1)
 (symon-mode 1)
