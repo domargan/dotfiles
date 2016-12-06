@@ -45,6 +45,9 @@
 ;; Restore last session on startup
 (desktop-save-mode 1)
 
+;; Do not create backup files
+(setq make-backup-files nil)
+
 ;; Enable fullscreen toggle on X11 with F11
 (defun toggle-fullscreen ()
   (interactive)
