@@ -157,9 +157,6 @@
   ;; Set line number size
   '(set-face-attribute 'linum nil :height 100))
 
-;; Disable line numbers for term
-(add-hook 'term-mode-hook (lambda () (linum-mode -1)))
-
 ;; Mode line
 (setf rm-blacklist "")
 (sml/setup)
@@ -288,6 +285,12 @@
 
 ;; Set default shell
 (setq explicit-shell-file-name "/bin/bash")
+
+;; Disable line numbers for terminal
+(add-hook 'term-mode-hook (lambda () (linum-mode -1)))
+
+;; Disable mode-line for terminal
+(add-hook 'term-mode-hook (lambda () (setq mode-line-format nil)))
 
 ;; Close terminal on exit
 (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
