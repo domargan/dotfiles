@@ -148,6 +148,12 @@
 ;; Open recent files menu entry
 (recentf-mode 1)
 
+;; Display line numbers by default
+(global-linum-mode 1)
+(eval-after-load "linum"
+  ;; Set line number size
+  '(set-face-attribute 'linum nil :height 100))
+
 ;; Mode line
 (setf rm-blacklist "")
 (sml/setup)
@@ -193,9 +199,8 @@
 (setq fci-rule-width 5)
 (setq fci-rule-column 80)
 
-;; Enable visual line mode by default
+;; Enable visual line mode by default (line-wrap)
 (global-visual-line-mode 1)
-(global-linum-mode 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
