@@ -157,6 +157,9 @@
   ;; Set line number size
   '(set-face-attribute 'linum nil :height 100))
 
+;; Disable line numbers for term
+(add-hook 'term-mode-hook (lambda () (linum-mode -1)))
+
 ;; Mode line
 (setf rm-blacklist "")
 (sml/setup)
