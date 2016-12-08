@@ -126,10 +126,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("e87a2bd5abc8448f8676365692e908b709b93f2d3869c42a4371223aab7d9cf8"
+ '(custom-safe-themes (quote ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa"
+			      "e87a2bd5abc8448f8676365692e908b709b93f2d3869c42a4371223aab7d9cf8"
 			      default))))
 
-(load-theme 'zenburn 1)
+(load-theme 'wombat 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -155,7 +156,8 @@
 (global-linum-mode 1)
 (eval-after-load "linum"
   ;; Set line number size
-  '(set-face-attribute 'linum nil :height 100))
+  '(set-face-attribute 'linum nil
+		       :height 100))
 
 ;; Mode line
 (setf rm-blacklist "")
@@ -287,10 +289,14 @@
 (setq explicit-shell-file-name "/bin/bash")
 
 ;; Disable line numbers for terminal
-(add-hook 'term-mode-hook (lambda () (linum-mode -1)))
+(add-hook 'term-mode-hook
+	  (lambda ()
+	    (linum-mode -1)))
 
 ;; Disable mode-line for terminal
-(add-hook 'term-mode-hook (lambda () (setq mode-line-format nil)))
+(add-hook 'term-mode-hook
+	  (lambda ()
+	    (setq mode-line-format nil)))
 
 ;; Close terminal on exit
 (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
