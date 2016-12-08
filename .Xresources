@@ -24,29 +24,49 @@ URxvt.saveLines: 65535
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 
+
 ! Color theme (Zenburn)
-URxvt*xftAntialias: true
-URxvt*background: #3f3f3f
-URxvt*foreground: #dcdccc
-URxvt*cursorColor: #aaaaaa
-URxvt*colorUL: #366060
-URxvt*underlineColor: #dfaf8f
-URxvt*color0: #3f3f3f
-URxvt*color1: #cc9393
-URxvt*color2: #7f9f7f
-URxvt*color3: #d0bf8f
-URxvt*color4: #6ca0a3
-URxvt*color5: #dc8cc3
-URxvt*color6: #93e0e3
-URxvt*color7: #dcdccc
-URxvt*color8: #000000
-URxvt*color9: #dca3a3
-URxvt*color10: #bfebbf
-URxvt*color11: #f0dfaf
-URxvt*color12: #8cd0d3
-URxvt*color13: #dc8cc3
-URxvt*color14: #93e0e3
-URxvt*color15: #ffffff
+!URxvt*background: #3f3f3f
+!URxvt*foreground: #dcdccc
+!URxvt*cursorColor: #aaaaaa
+!URxvt*colorUL: #366060
+!URxvt*underlineColor: #dfaf8f
+!URxvt*color0: #3f3f3f
+!URxvt*color1: #cc9393
+!URxvt*color2: #7f9f7f
+!URxvt*color3: #d0bf8f
+!URxvt*color4: #6ca0a3
+!URxvt*color5: #dc8cc3
+!URxvt*color6: #93e0e3
+!URxvt*color7: #dcdccc
+!URxvt*color8: #000000
+!URxvt*color9: #dca3a3
+!URxvt*color10: #bfebbf
+!URxvt*color11: #f0dfaf
+!URxvt*color12: #8cd0d3
+!URxvt*color13: #dc8cc3
+!URxvt*color14: #93e0e3
+!URxvt*color15: #ffffff
+
+! Color theme (Wombat)
+URxvt*foreground: #ffffff
+URxvt*background: #242424
+URxvt*color0: #161616
+URxvt*color1: #e5786d
+URxvt*color2: #cae682
+URxvt*color3: #ffe161
+URxvt*color4: #5283d7
+URxvt*color5: #b698d9
+URxvt*color6: #a8c6f2
+URxvt*color7: #f6f3e8
+URxvt*color8: #857B6F
+URxvt*color9: #9d2a3a
+URxvt*color10: #8bbe34
+URxvt*color11: #ffc442
+URxvt*color12: #3b5d9a
+URxvt*color13: #a57ac4
+URxvt*color14: #5da7e1
+URxvt*color15: #d3d7cf
 
 ! Open URLs with Firefox
 URxvt.url-launcher: firefox
