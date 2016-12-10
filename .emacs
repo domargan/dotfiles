@@ -18,7 +18,7 @@
   '(auctex ace-jump-mode auto-complete auto-package-update autopair beacon direx drag-stuff
 	   elisp-format erc fill-column-indicator flx-ido flycheck go-autocomplete go-direx go-eldoc
 	   go-mode google-this highlight-escape-sequences ido ido-ubiquitous ido-vertical-mode
-	   indent-guide interleave smart-mode-line smex symon synosaurus org undo-tree
+	   indent-guide interleave smart-mode-line smex smooth-scrolling symon synosaurus org undo-tree
 	   visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
   "Install all the packages!")
 
@@ -214,6 +214,9 @@
 
 ;; Move the cursor with ace-jump-mode
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+;; Enable smooth scrolling
+(smooth-scrolling-mode 1)
 
 ;; Use visual-regexp instead of the built-in isearch
 (define-key global-map (kbd "C-r") 'vr/isearch-backward)
