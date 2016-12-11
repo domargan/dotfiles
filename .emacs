@@ -475,3 +475,31 @@
 ;; Check syntax with flycheck
 (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
 (require 'go-flycheck)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; urxvt compatibility ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Catch correct sequences for operations with arrows
+;; http://www.netswarm.net/misc/urxvt-xtermcompat.txt
+(define-key function-key-map "\033[1;2A" [(shift up)])
+(define-key function-key-map "\033[1;2B" [(shift down)])
+(define-key function-key-map "\033[1;2D" [(shift left)])
+(define-key function-key-map "\033[1;2C" [(shift right)])
+(define-key function-key-map "\033[1;3A" [(meta up)])
+(define-key function-key-map "\033[1;3B" [(meta down)])
+(define-key function-key-map "\033[1;3D" [(meta left)])
+(define-key function-key-map "\033[1;3C" [(meta right)])
+(define-key function-key-map "\033[1;4A" [(shift meta up)])
+(define-key function-key-map "\033[1;4B" [(shift meta down)])
+(define-key function-key-map "\033[1;4D" [(shift meta left)])
+(define-key function-key-map "\033[1;4C" [(shift meta right)])
+(define-key function-key-map "\033[1;5A" [(control up)])
+(define-key function-key-map "\033[1;5B" [(control down)])
+(define-key function-key-map "\033[1;5D" [(control left)])
+(define-key function-key-map "\033[1;5C" [(control right)])
+(define-key function-key-map "\033[1;6A" [(control shift up)])
+(define-key function-key-map "\033[1;6B" [(control shift down)])
+(define-key function-key-map "\033[1;6D" [(control shift left)])
+(define-key function-key-map "\033[1;6C" [(control shift right)])
