@@ -218,6 +218,13 @@
 ;; Enable smooth scrolling
 (smooth-scrolling-mode 1)
 
+;; Preserve cursor position while scrolling
+(setq scroll-preserve-screen-position 1)
+
+;; scroll window up/down by one line
+(global-set-key (kbd "M-n") (kbd "C-u 1 C-v"))
+(global-set-key (kbd "M-p") (kbd "C-u 1 M-v"))
+
 ;; Use visual-regexp instead of the built-in isearch
 (define-key global-map (kbd "C-r") 'vr/isearch-backward)
 (define-key global-map (kbd "C-s") 'vr/isearch-forward)
