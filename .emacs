@@ -405,9 +405,9 @@
 (google-this-mode 1)
 
 ;; Pomodoro
-(load "pomodoro")
-(require 'pomodoro)
-(pomodoro-add-to-mode-line)
+;;(load "pomodoro")
+;;(require 'pomodoro)
+;;(pomodoro-add-to-mode-line)
 
 ;; Elisp Formatter
 (require 'elisp-format)
