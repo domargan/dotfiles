@@ -18,8 +18,8 @@
   '(auctex ace-jump-mode auto-complete auto-package-update autopair beacon direx drag-stuff
 	   elisp-format erc fill-column-indicator flx-ido flycheck go-autocomplete go-direx go-eldoc
 	   go-mode google-this highlight-escape-sequences ido ido-ubiquitous ido-vertical-mode
-	   indent-guide interleave smart-mode-line smex smooth-scrolling symon synosaurus org undo-tree
-	   visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
+	   indent-guide interleave smart-mode-line smex smooth-scrolling symon synosaurus org org-autolist
+	   undo-tree visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
   "Install all the packages!")
 
 ;; Fetch the list of packages available
@@ -378,6 +378,9 @@
 
 ;; Use ido completion
 (setq org-completion-use-ido 1)
+
+;; Enable autolists by default
+(add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
