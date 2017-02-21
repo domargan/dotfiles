@@ -2,7 +2,7 @@
 URxvt*termName: rxvt-256color
 
 ! Extensions
-URxvt.perl-ext-common: default,resize-font,keyboard-select,url-select
+URxvt.perl-ext-common: default,fullscreen,resize-font,keyboard-select,url-select
 
 ! Disable useless stuff
 URxvt.iso14755: false
@@ -19,6 +19,9 @@ URxvt.keysym.C-question: perl:resize-font:show
 URxvt*scrollWithBuffer: true
 URxvt*scrollBar: false
 URxvt.saveLines: 65535
+
+! Go fullscreen with F11
+URxvt.keysym.F11: perl:fullscreen:switch
 
 ! Use keyboard shortcuts to select and copy text
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
