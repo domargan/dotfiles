@@ -176,8 +176,8 @@
 (display-time-mode 1)
 
 ;; Display system monitor
-(setq symon-refresh-rate 1)
-(symon-mode 1)
+;;(setq symon-refresh-rate 1)
+;;(symon-mode 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
