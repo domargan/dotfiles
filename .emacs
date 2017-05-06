@@ -9,6 +9,8 @@
 ;;;;;;;;; Package managment ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+
 (require 'package)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") 1)
 (package-initialize)
@@ -18,8 +20,8 @@
   '(auctex ace-jump-mode auto-complete auto-package-update autopair beacon direx drag-stuff
 	   elisp-format erc fill-column-indicator flx-ido flycheck go-autocomplete go-direx go-eldoc
 	   go-mode google-this highlight-escape-sequences ido ido-ubiquitous ido-vertical-mode
-	   indent-guide interleave smart-mode-line smex smooth-scrolling symon synosaurus org org-autolist
-	   undo-tree visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
+	   indent-guide interleave langtool smart-mode-line smex smooth-scrolling symon synosaurus org
+	   org-autolist undo-tree visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
   "Install all the packages!")
 
 ;; Fetch the list of packages available
@@ -400,6 +402,11 @@
 
 ;; Find synonyms with Synosaurus (requires WordNet)
 (synosaurus-mode 1)
+
+;; LanguageTool support
+(require 'langtool)
+(setq langtool-language-tool-jar "/opt/LanguageTool-3.7/languagetool-commandline.jar")
+(setq langtool-default-language "en-US")
 
 ;; Google this
 (google-this-mode 1)
