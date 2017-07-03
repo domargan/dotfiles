@@ -9,8 +9,6 @@
 ;;;;;;;;; Package managment ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-
 (require 'package)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") 1)
 (package-initialize)
@@ -195,6 +193,9 @@
 
 ;; See matching pairs of parentheses
 (show-paren-mode 1)
+
+;; Enable indentation guide
+;;(indent-guide-global-mode 1)
 
 ;; Display 80 chars indicator
 (define-globalized-minor-mode global-fci-mode fci-mode
