@@ -17,11 +17,12 @@
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
-  '(auctex ace-jump-mode auto-complete auto-package-update autopair beacon direx drag-stuff
-	   elisp-format erc fill-column-indicator flx-ido flycheck go-autocomplete go-direx go-eldoc
-	   go-mode google-this highlight-escape-sequences ido ido-ubiquitous ido-vertical-mode
-	   indent-guide interleave langtool smart-mode-line smex smooth-scrolling symon synosaurus org
-	   org-autolist undo-tree visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
+  '(ace-jump-mode auctex auto-complete auto-package-update autopair beacon direx drag-stuff
+		  elisp-format erc fill-column-indicator flx flx-ido flycheck go-autocomplete
+		  go-direx go-eldoc go-mode google-this highlight-escape-sequences ido
+		  ido-ubiquitous ido-vertical-mode interleave langtool projectile project-explorer
+		  smart-mode-line smex smooth-scrolling synosaurus org org-autolist undo-tree
+		  visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
   "Install all the packages!")
 
 ;; Fetch the list of packages available
@@ -224,8 +225,10 @@
 (setq scroll-preserve-screen-position 1)
 
 ;; scroll window up/down by one line
-(global-set-key (kbd "M-n") (kbd "C-u 1 C-v"))
-(global-set-key (kbd "M-p") (kbd "C-u 1 M-v"))
+(global-set-key (kbd "M-n")
+		(kbd "C-u 1 C-v"))
+(global-set-key (kbd "M-p")
+		(kbd "C-u 1 M-v"))
 
 ;; Use visual-regexp instead of the built-in isearch
 (define-key global-map (kbd "C-r") 'vr/isearch-backward)
@@ -382,7 +385,9 @@
 (setq org-completion-use-ido 1)
 
 ;; Enable autolists by default
-(add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
+(add-hook 'org-mode-hook
+	  (lambda ()
+	    (org-autolist-mode)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
