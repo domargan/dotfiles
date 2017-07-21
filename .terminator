@@ -3,13 +3,27 @@
   dbus = True
   geometry_hinting = False
   suppress_multiple_term_dialog = True
+  tab_position = hidden
   title_hide_sizetext = True
-  title_receive_bg_color = "#7f9f78"
+  title_receive_bg_color = "#efbf38"
   title_transmit_bg_color = "#6db8bb"
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
 [profiles]
   [[default]]
     background_color = "#1f1d45"
     background_image = None
     cursor_color = "#efbf38"
+    font = Monospace 14
     foreground_color = "#f8dcc0"
     palette = "#050404:#bd0013:#4ab118:#e7741e:#0f4ac6:#665993:#70a598:#f8dcc0:#4e7cbf:#fc5f5a:#9eff6e:#efc11a:#1997c6:#9b5953:#c8faf4:#f6f5fb"
+    scrollback_infinite = True
+    use_system_font = False
