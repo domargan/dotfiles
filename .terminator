@@ -1,86 +1,30 @@
 [global_config]
-  title_hide_sizetext = True
+  always_split_with_profile = True
   dbus = True
   geometry_hinting = False
   suppress_multiple_term_dialog = True
-  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
-  title_receive_bg_color = "#7f9f78"
+  tab_position = hidden
+  title_hide_sizetext = True
+  title_receive_bg_color = "#efbf38"
   title_transmit_bg_color = "#6db8bb"
-  always_split_with_profile = True
 [keybindings]
-[profiles]
-  [[default]]
-    scrollbar_position = hidden
-    palette = "#4d4d4d:#705050:#60b48a:#f0dfaf:#506070:#dc8cc3:#8cd0d3:#dcdccc:#709080:#dca3a3:#c3bf9f:#e0cf9f:#94bff3:#ec93d3:#93e0e3:#ffffff"
-    background_image = None
-    background_darkness = 0.9
-    use_system_font = False
-    cursor_color = "#dcdcdc"
-    foreground_color = "#dcdccc"
-    show_titlebar = False
-    font = Terminus 14
-    background_color = "#3f3f3f"
-    cursor_blink = False
-    scrollback_infinite = True
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
       parent = window0
-      profile = default
+      type = Terminal
     [[[window0]]]
-      type = Window
       parent = ""
-  [[domargan]]
-    [[[child0]]]
-      position = 121:109
       type = Window
-      order = 0
-      parent = ""
-      size = 882, 571
-    [[[child1]]]
-      position = 441
-      type = HPaned
-      order = 0
-      parent = child0
-    [[[child2]]]
-      position = 285
-      type = VPaned
-      order = 0
-      parent = child1
-    [[[child5]]]
-      position = 285
-      type = VPaned
-      order = 1
-      parent = child1
-    [[[child7]]]
-      position = 140
-      type = VPaned
-      order = 1
-      parent = child5
-    [[[terminal3]]]
-      profile = default
-      type = Terminal
-      order = 0
-      parent = child2
-    [[[terminal4]]]
-      profile = default
-      type = Terminal
-      order = 1
-      parent = child2
-    [[[terminal6]]]
-      profile = default
-      type = Terminal
-      order = 0
-      parent = child5
-    [[[terminal9]]]
-      profile = default
-      type = Terminal
-      order = 1
-      parent = child7
-    [[[terminal8]]]
-      profile = default
-      type = Terminal
-      order = 0
-      parent = child7
 [plugins]
+[profiles]
+  [[default]]
+    background_color = "#1f1d45"
+    background_image = None
+    cursor_color = "#efbf38"
+    font = Monospace 14
+    foreground_color = "#f8dcc0"
+    palette = "#050404:#bd0013:#4ab118:#e7741e:#0f4ac6:#665993:#70a598:#f8dcc0:#4e7cbf:#fc5f5a:#9eff6e:#efc11a:#1997c6:#9b5953:#c8faf4:#f6f5fb"
+    scrollback_infinite = True
+    show_titlebar = False
+    use_system_font = False
