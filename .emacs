@@ -16,9 +16,9 @@
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
   '(ace-jump-mode auctex auto-complete auto-package-update autopair beacon direx drag-stuff
-		  elisp-format erc fill-column-indicator flx flx-ido flycheck go-autocomplete
-		  go-direx go-eldoc go-mode google-this highlight-escape-sequences ido
-		  ido-ubiquitous ido-vertical-mode interleave langtool projectile project-explorer
+		  elisp-format erc flx flx-ido flycheck go-autocomplete go-direx go-eldoc go-mode
+		  google-this highlight-escape-sequences ido ido-completing-read+ ido-ubiquitous
+		  ido-vertical-mode interleave langtool memoize projectile project-explorer
 		  smart-mode-line smex smooth-scrolling synosaurus org org-autolist undo-tree
 		  visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
   "Install all the packages!")
@@ -196,14 +196,6 @@
 
 ;; Enable indentation guide
 ;;(indent-guide-global-mode 1)
-
-;; Display 80 chars indicator
-(define-globalized-minor-mode global-fci-mode fci-mode
-  (lambda ()
-    (fci-mode 1)))
-(global-fci-mode 1)
-(setq fci-rule-width 5)
-(setq fci-rule-column 80)
 
 ;; Enable visual line mode by default (line-wrap)
 (global-visual-line-mode 1)
