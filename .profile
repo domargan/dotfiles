@@ -28,4 +28,4 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/Workspace/Code/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/opt/Gogland-171.3780.106/bin
+export PATH=$PATH:/opt/Gogland/bin
