@@ -1,31 +1,48 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;               GNU Emacs config              ;;
-;;            Author: Domagoj Margan           ;;
-;;            Email: dm@domargan.net           ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;               domargan's GNU Emacs config              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; -*- mode: emacs-lisp; -*-
+
+;; Me
+(setq user-full-name "Domagoj Margan")
+(setq user-mail-address "dm@domargan.net")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Package managment ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Refresh contents if errors about missing packages (known Emacs bug):
+;; M-x package-refresh-contents
+;; and then restart.
+
+;; Fetch from local MELPA mirrors, see:
+;; https://github.com/d12frosted/elpa-mirror
+;; https://github.com/ninrod/emacs-antiproxy
+;; (setq package-archives
+;;	  `(("melpa" . "elpa-mirror-master/melpa/")
+;;		("org"   . "elpa-mirror-master/org/")
+;;		("gnu"   . "elpa-mirror-master/gnu/")))
+
 (require 'package)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") 1)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
 ;; Auto-install packages by default on all machines
 (defvar domargan-packages
-  '(ace-jump-mode auctex auto-complete auto-package-update autopair beacon direx drag-stuff
-		  elisp-format erc flx flx-ido flycheck go-autocomplete go-direx go-eldoc go-mode
-		  google-this highlight-escape-sequences ido ido-completing-read+ ido-ubiquitous
-		  ido-vertical-mode interleave langtool memoize projectile project-explorer
-		  smart-mode-line smex smooth-scrolling synosaurus org org-autolist undo-tree
-		  visual-regexp-steroids wc-mode windresize zenburn-theme zoom-window)
+  '(ace-jump-mode auto-complete auto-package-update beacon diff-hl direx
+		  drag-stuff elisp-format exec-path-from-shell
+		  fill-column-indicator flx flx-ido flycheck
+		  flycheck-irony ggtags google-this goto-last-change
+		  highlight-escape-sequences ido ido-completing-read+
+		  ido-vertical-mode irony modern-cpp-font-lock
+		  projectile project-explorer rich-minority smex
+		  smooth-scrolling undo-tree visual-regexp-steroids
+		  window-purpose windresize zoom-window)
   "Install all the packages!")
 
 ;; Fetch the list of packages available
-(unless package-archive-contents
-  (package-refresh-contents))
+(unless package-archive-contents (package-refresh-contents))
 
 ;; Install the missing packages
 (dolist (package domargan-packages)
@@ -39,104 +56,57 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; General ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Restore last session on startup
-(desktop-save-mode 1)
-
-;; Do not create backup files
-(setq make-backup-files nil)
-
-;; Enable fullscreen toggle on X11 with F11
-(defun toggle-fullscreen ()
-  (interactive)
-  (when (eq window-system 'x)
-    (set-frame-parameter nil 'fullscreen
-			 (when (not (frame-parameter nil 'fullscreen))
-			   'fullboth))))
-(global-set-key [f11] 'toggle-fullscreen)
-
-;; Increase or decrease font in GUI with mouse scroll
-(global-set-key [C-mouse-4] 'text-scale-increase)
-(global-set-key [C-mouse-5] 'text-scale-decrease)
-
-;; Increase or decrease font with C-+/-
-(global-set-key (kbd "C-+") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-
-;; Disable C-z
-(global-unset-key "\^z")
-
-;; Disable Insert key
-(put 'overwrite-mode 'disabled 1)
-
-;; Clean whitespaces on save
-(add-hook 'before-save-hook 'whitespace-cleanup)
-
-;; Type y or n instead yes or no
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; Indentation settings
-(setq-default indent-tabs-mode 1)
-(setq-default tab-width 8)
-
-;; Enable global syntax checking
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-;; Spellchecking settings
-(setq ispell-dictionary "english")
-(setq ispell-program-name "aspell")
-
-;; Enable auto-complete
-(ac-config-default)
-(require 'auto-complete-config)
-
-;; Close brackets automatically
-(autopair-global-mode 1)
-
-;; Don't ask for confirmation for region case conversion
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-
-;; Set SSH as default remote work protocol
-(setq tramp-default-method "ssh")
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Themes and fonts ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t
-	     (:family "Hack"
-		      :slant normal
-		      :weight normal
-		      :height 123
-		      :width normal
-		      :foundry "simp")))))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa"
-			      "e87a2bd5abc8448f8676365692e908b709b93f2d3869c42a4371223aab7d9cf8"
-			      default))))
-
-(load-theme 'wombat 1)
+(load-theme 'manoj-dark 1)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; Interface and layout modifications ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; General ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Ensure environment variables inside Emacs look the same as in my shell
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+;; Start Emacs server during init unles there is a server already running
+(if (and (fboundp 'server-running-p)
+	 (not (server-running-p)))
+    (server-start))
+
+;; Restore last session on startup
+(desktop-save-mode 1)
+
+;; Don't create #autosave# files
+(setq auto-save-default nil)
+
+;; Don't create #temp files
+(setq create-lockfiles nil)
+
+;; Don't create backup~ files
+;;(setq make-backup-files nil)
+
+;; Backup versioned files as well
+(setq vc-make-backup-files t)
+
+;; Handle multipe backups
+(setq backup-by-copying t delete-old-versions t kept-new-versions 10
+      kept-old-versions 10
+      version-control t)
+
+;; Save per-save backup files in a separate dir
+(setq backup-directory-alist '(("" . "~/backups/per_save")))
+
+;; Make a special "per session" backup at the first save of each emacs session.
+(defun force-backup-of-buffer ()
+  (when (not buffer-backed-up)
+    (let ((backup-directory-alist '(("" . "~/backups/per_session")))
+	  (kept-new-versions 3))
+      (backup-buffer)))
+  (let ((buffer-backed-up nil))
+    (backup-buffer)))
 
 ;; Remove splash screen
 (setq inhibit-splash-screen 1)
@@ -150,63 +120,60 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
-;; Open recent files menu entry
-(recentf-mode 1)
+;; Credits: https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening/
+;; Remove *Messages* buffer
+;;(setq-default message-log-max nil)
+;;(kill-buffer "*Messages*")
 
-;; Display line numbers by default
-(global-linum-mode 1)
-(eval-after-load "linum"
-  ;; Set line number size
-  '(set-face-attribute 'linum nil
-		       :height 100))
+;; Removes *Completions* buffer
+(add-hook 'minibuffer-exit-hook '(lambda ()
+				   (let ((buffer "*Completions*"))
+				     (and (get-buffer buffer)
+					  (kill-buffer buffer)))))
 
-;; Mode line
-(setf rm-blacklist "")
-(sml/setup)
+;; Don't show *Buffer list* when opening multiple files at the same time
+(setq inhibit-startup-buffer-menu 1)
 
-;; Display which line and column the cursor is currently on
-(line-number-mode 1)
-(column-number-mode 1)
+;; Show only one active window when opening multiple files at the same time
+(add-hook 'window-setup-hook 'delete-other-windows)
 
-;; Display file size on mode line
-(size-indication-mode 1)
+;; Kill buffer and delete its window at the same time
+					;(substitute-key-definition 'kill-buffer 'kill-buffer-and-window global-map)
 
-;; Display time
-(setq display-time-default-load-average nil)
-(setq display-time-24hr-format 1)
-(display-time-mode 1)
-
-;; Display system monitor
-;;(setq symon-refresh-rate 1)
-;;(symon-mode 1)
+;; Don't show minor modes on modeline
+(rich-minority-mode 1)
+(setq rm-whitelist (format "^ \\(%s\\)$" (mapconcat #'identity '("Fly.*") "\\|")))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; Visual Helpers ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Interface interaction and navigation ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Highlight cursor on every scroll
-(beacon-mode 1)
+;; Type y or n instead yes or no
+(fset 'yes-or-no-p 'y-or-n-p)
 
-;; Highlight escape sequences
-(hes-mode 1)
+;; Copy/paste outside Emacs in MacOS
+(if (eq system-type 'darwin)
+    (defun copy-from-macos ()
+      (shell-command-to-string "pbpaste"))
+  (defun paste-to-macos (text &optional push)
+    (let ((process-connection-type nil))
+      (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+	(process-send-string proc text)
+	(process-send-eof proc))))
+  (setq interprogram-cut-function 'paste-to-macos)
+  (setq interprogram-paste-function 'copy-from-macos))
 
-;; See matching pairs of parentheses
-(show-paren-mode 1)
+;; Don't ask for confirmation for region case conversion
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
 
-;; Enable indentation guide
-;;(indent-guide-global-mode 1)
+;; Disable C-z
+(global-unset-key "\^z")
 
-;; Enable visual line mode by default (line-wrap)
-(global-visual-line-mode 1)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; Navigation and user interaction ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Move the cursor with ace-jump-mode
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+;; Disable Insert key
+(put 'overwrite-mode 'disabled 1)
 
 ;; Enable smooth scrolling
 (smooth-scrolling-mode 1)
@@ -220,51 +187,8 @@
 (global-set-key (kbd "M-p")
 		(kbd "C-u 1 M-v"))
 
-;; Use visual-regexp instead of the built-in isearch
-(define-key global-map (kbd "C-r") 'vr/isearch-backward)
-(define-key global-map (kbd "C-s") 'vr/isearch-forward)
-;; Use visual-regexp for search-and-replace
-(define-key global-map (kbd "C-c r") 'vr/replace)
-(define-key global-map (kbd "C-c q") 'vr/query-replace)
-
-;; Enable and setup IDO everywhere
-(ido-mode 1)
-(ido-everywhere 1)
-(ido-ubiquitous-mode 1)
-(ido-vertical-mode 1)
-(flx-ido-mode 1)
-(setq ido-separator "\n")
-(setq ido-ignore-buffers '("\\` " "^\*"))
-
-;; Enable smex
-(global-set-key (kbd "M-x") 'smex)
-
-;; Enable projectile
-(projectile-global-mode 1)
-
-;; Enable directory tree navigation
-(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root)
-
-;; Enable navigation in the same buffer with dired
-(put 'dired-find-alternate-file 'disabled nil)
-
-;; Credits: https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening/152151#152151
-;; Remove *messages* buffer
-(setq-default message-log-max nil)
-(kill-buffer "*Messages*")
-
-;; Removes *Completions* buffer
-(add-hook 'minibuffer-exit-hook
-	  '(lambda ()
-	     (let ((buffer "*Completions*"))
-	       (and (get-buffer buffer)
-		    (kill-buffer buffer)))))
-
-;; Don't show *Buffer list* when opening multiple files at the same time
-(setq inhibit-startup-buffer-menu 1)
-
-;; Show only one active window when opening multiple files at the same time
-(add-hook 'window-setup-hook 'delete-other-windows)
+;; Highlight cursor on every scroll
+(beacon-mode 1)
 
 ;; Navigate through windows using S-<Arrow>
 (windmove-default-keybindings)
@@ -277,234 +201,238 @@
 
 ;; Zoom window with C-x C-z
 (global-set-key (kbd "C-x C-z") 'zoom-window-zoom)
-(setq zoom-window-mode-line-color "DarkGreen")
+;;(setq zoom-window-mode-line-color "DarkGreen")
 
 ;; Enable undoing window configurations
 (winner-mode 1)
 
+;; Dedicate purposes to windows by mode and name
+(require 'window-purpose)
+(purpose-mode 1)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;; Terminal Emulator ;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq purpose-user-mode-purposes '((term-mode . terminal)
+				   (ansi-term-mode . terminal)
+				   (prog-mode . coding)
+				   (compilation-mode . messages)))
 
-;; Alias
-(defalias 'sh 'ansi-term)
+(setq purpose-user-name-purposes '(("*Messages*" . messages)
+				   ("*Warnings*" . messages)
+				   ("*ggtags-global*" . messages)
+				   ("*Flycheck error messages*" . messages)))
 
-;; Set default shell
-(setq explicit-shell-file-name "/bin/bash")
+(setq purpose-use-default-configuration t)
+(purpose-compile-user-configuration)
 
-;; Disable line numbers for terminal
-(add-hook 'term-mode-hook
-	  (lambda ()
-	    (linum-mode -1)))
+;; Don't close the window if there are more buffers in the same mode
+(require 'window-purpose-x)
+(purpose-x-kill-setup)
 
-;; Disable mode-line for terminal
-(add-hook 'term-mode-hook
-	  (lambda ()
-	    (setq mode-line-format nil)))
+;; Increase or decrease font size with C-+/-
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
 
-;; Close terminal on exit
+;; Open recent files menu entry
+(recentf-mode 1)
+
+;; Enable and setup IDO everywhere
+(ido-mode 1)
+(ido-everywhere 1)
+(ido-vertical-mode 1)
+(flx-ido-mode 1)
+(setq ido-separator "\n")
+(setq ido-ignore-buffers '("\\` " "^\*"))
+
+;; Enable smex
+(global-set-key (kbd "M-x") 'smex)
+
+;; Enable directory tree navigation
+(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root)
+
+;; Enable navigation in the same buffer with dired
+(put 'dired-find-alternate-file 'disabled nil)
+
+;; Kill all dired buffers at once
+(defun kill-dired-buffers ()
+  (interactive)
+  (mapc (lambda (buffer)
+	  (when (eq 'dired-mode (buffer-local-value 'major-mode buffer))
+	    (kill-buffer buffer)))
+	(buffer-list)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;; Terminal emulator ;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Always use bash with ansi-term
+(defvar my-term-shell "/bin/bash")
+(defadvice ansi-term (before force-bash)
+  (interactive (list my-term-shell)))
+(ad-activate 'ansi-term)
+
+;; Kill the term buffer after the terminal is exited
 (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
   (if (memq (process-status proc)
 	    '(signal
 	      exit))
-      (let ((buffer (process-buffer proc)))
-	ad-do-it
-	(kill-buffer buffer))
+      (let ((buffer (process-buffer proc))) ad-do-it (kill-buffer buffer))
     ad-do-it))
 (ad-activate 'term-sentinel)
 
-;; Paste into terminal
-(eval-after-load "term" '(define-key term-raw-map (kbd "C-c C-y") 'term-paste))
+;; Loop through all open ansi-terms with F3
+;; Credits: https://stackoverflow.com/questions/9983731/emacs-and-ansi-term-elisp-iterate-through-a-list-of-buffers
+(global-set-key (kbd "<f3>") 'cycle-ansi-term)
+(defun cycle-ansi-term ()
+  "cycle through buffers whose major mode is
+term-mode"
+  (interactive)
+  (when (string= "term-mode" major-mode)
+    (bury-buffer))
+  (let ((buffers (cdr (buffer-list))))
+    (while buffers (when (with-current-buffer (car buffers)
+			   (string= "term-mode" major-mode))
+		     (switch-to-buffer (car buffers))
+		     (setq buffers nil))
+	   (setq buffers (cdr buffers)))))
 
 
-;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; IRC ;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; General file editing ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Name and email
-(setq erc-user-full-name "Domagoj Margan")
-(setq erc-email-userid "dm@domargan.net")
+;; Set SSH as default remote edit protocol
+(setq-default tramp-default-method "ssh")
 
-;; Auto identification
-(load "~/.ercpass")
-(require 'erc-services)
-(erc-services-mode 1)
-(setq erc-prompt-for-nickserv-password nil)
-(setq erc-nickserv-passwords `((freenode (("domargan" . ,freenode-domargan-pass)))))
+;; Enable visual line mode by default (line-wrap)
+;; (global-visual-line-mode 1)
 
-;; Rename server buffers
-(setq erc-rename-buffers 1)
+;;Disable line wrap globally
+(set-default 'truncate-lines 1)
 
-;; Hide join, part, and quit messages
-(setq erc-hide-list '("JOIN" "PART" "QUIT"))
+;; Highlight escape sequences
+(hes-mode 1)
 
-;; Recconect in the background
-;; (setq erc-join-buffer 'bury)
+;; Move the cursor with ace-jump-mode
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
-;; Autojoin channels
-;; (setq erc-autojoin-channels-alist '(("freenode.net" "#hulk-ri" "#linux.hr" "#go-nuts")))
-;; (erc :server "irc.freenode.net" :port 6667 :nick "domargan")
+;; Go to line
+(global-set-key (kbd "\C-cl") 'goto-line)
 
-;; Kill buffers for channels after /part
-(setq erc-kill-buffer-on-part 1)
+;; Go to last change
+(global-set-key "\C-x\C-\\" 'goto-last-change)
 
-;; Kill buffers for private queries after quitting the server
-(setq erc-kill-queries-on-quit 1)
+;; Comment regions
+(global-set-key (kbd "\C-cx") 'comment-region)
+(global-set-key (kbd "\C-xc") 'uncomment-region)
 
-;; Kill buffers for server messages after quitting the server
-(setq erc-kill-server-buffer-on-quit 1)
-
-;; utf-8 support
-(setq erc-server-coding-system '(utf-8 . utf-8))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; Org Mode ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Make org-mode the default mode for .org, .org_archive, and .txt files
-(add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
-
-;; Define key bindings
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-
-;; Use ido completion
-(setq org-completion-use-ido 1)
-
-;; Enable autolists by default
-(add-hook 'org-mode-hook
-	  (lambda ()
-	    (org-autolist-mode)))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; Additional features ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Undo tree
-(global-undo-tree-mode 1)
+;; Use visual-regexp instead of the built-in isearch
+(define-key global-map (kbd "C-r") 'vr/isearch-backward)
+(define-key global-map (kbd "C-s") 'vr/isearch-forward)
+;; Use visual-regexp for search-and-replace
+(define-key global-map (kbd "C-c r") 'vr/replace)
+(define-key global-map (kbd "C-c q") 'vr/query-replace)
 
 ;; Drag stuff
 (drag-stuff-global-mode 1)
 (drag-stuff-define-keys)
 
-;; Wordcount
-(require 'wc-mode)
-(wc-mode 1)
+;; Undo tree
+(global-undo-tree-mode 1)
 
-;; Find synonyms with Synosaurus (requires WordNet)
-(synosaurus-mode 1)
-
-;; LanguageTool support
-(require 'langtool)
-(setq langtool-language-tool-jar "/opt/LanguageTool-3.7/languagetool-commandline.jar")
-(setq langtool-default-language "en-US")
-
-;; Google this
-(google-this-mode 1)
-
-;; Pomodoro
-;;(load "pomodoro")
-;;(require 'pomodoro)
-;;(pomodoro-add-to-mode-line)
-
-;; Elisp Formatter
-(require 'elisp-format)
+;; Clean whitespaces on save
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; LaTeX essentials ;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Coding (general) ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Basic configuration
-(require 'tex-site)
-(setq TeX-auto-save 1)
-(setq TeX-parse-self 1)
-(setq TeX-save-query nil)
-(setq-default TeX-master nil)
-(setq TeX-PDF-mode 1)
-(add-hook 'LaTeX-mode-hook 'visual-line-mode)
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(add-hook 'LaTeX-mode-hook
-	  (lambda ()
-	    (LaTeX-fold-mode 1)))
+;; Enable diff highlighting in margins
+(setq-default right-margin-width 2)
+(setq-default diff-hl-side 'right)
+(setq-default diff-hl-margin-side 'right)
+(add-hook 'prog-mode-hook 'diff-hl-margin-mode)
+(add-hook 'prog-mode-hook 'diff-hl-flydiff-mode)
 
-;; Enable spellchecking in .tex docs
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
+;; Enable projectile
+(add-hook 'prog-mode-hook 'projectile-mode)
 
-;; External viewers
-(setq TeX-output-view-style (quote (("^pdf$" "." "evince -f %o")
-				    ("^html?$" "." "firefox %o"))))
+;; Enable tagging with GNU Global for C/C++
+;; Requires manual download and compile from https://www.gnu.org/software/global/
+(add-hook 'c-mode-common-hook 'ggtags-mode)
+
+;; Enable auto-complete
+(ac-config-default)
+(require 'auto-complete-config)
+
+;; Advanced auto-complete for C/C++
+;; Requires CMake >= 2.8.3 and libclang
+;;(add-hook 'c++-mode-hook 'irony-mode)
+;;(add-hook 'c-mode-hook 'irony-mode)
+;;(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+;; Enable global syntax checking
+(add-hook 'prog-mode-hook 'flycheck-mode)
+
+;; Enchance C/C++ syntax checking
+;; Requires CMake >= 2.8.3 and libclang
+;;(eval-after-load 'flycheck
+;;  '(add-hook 'flycheck-mode-hook 'flycheck-irony-setup))
+
+;; Break lines automatically at spaces when the line becomes too wide
+(add-hook 'prog-mode-hook 'auto-fill-mode)
+
+;; Close brackets automatically
+;; (add-hook 'prog-mode-hook 'autopair-mode)
+
+;; See matching pairs of parentheses
+(add-hook 'prog-mode-hook 'show-paren-mode)
+
+;; Hide/show blocks of code
+(add-hook 'prog-mode-hook 'hs-minor-mode)
+
+;; Enable line numbers
+(add-hook 'prog-mode-hook 'linum-mode)
+
+;; Enable column indicator
+(add-hook 'prog-mode-hook 'fci-mode)
+
+;; Enchance sytntax highlighting for modern C++
+(add-hook 'c++-mode-hook 'modern-c++-font-lock-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; Go programming essentials ;;;;;;;;;
+;;;;;;;;; Custom set vars and faces ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Credits: http://arenzana.org/2015/Emacs-for-Go/
-
-;; Prerequisites:
-;; go get -u golang.org/x/tools/cmd/goimports
-;; go get -u github.com/golang/lint/golint
-;; go get -u github.com/kisielk/errcheck
-;; go get -u golang.org/x/tools/cmd/godoc
-;; go get -u github.com/rogpeppe/godef
-;; go get -u github.com/nsf/gocode
-;; go get -u github.com/dougm/goflymake
-
-(defun go-mode-setup ()
-  ;; Custom Compile Command
-  (setq compile-command "go build -v -race && go test -v -race && go vet && golint && errcheck")
-  (define-key (current-local-map) "\C-c\C-c" 'compile)
-  ;; Take care of imports
-  (setq gofmt-command "goimports")
-  ;; Format with fmt before saving
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  ;; Provide eldoc for Go
-  (go-eldoc-setup)
-  ;; Show function definition when calling godef-jump
-  (local-set-key (kbd "M-.") 'godef-jump))
-(add-hook 'go-mode-hook 'go-mode-setup)
-
-;; Load auto-complete for Go files (with gocode)
-(require 'go-autocomplete)
-
-;; Run golint with M-x golint
-(add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/golang/lint/misc/emacs"))
-(require 'golint)
-
-;; Check syntax with flycheck
-(add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
-(require 'go-flycheck)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;; urxvt compatibility ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Catch correct sequences for operations with arrows
-;; http://www.netswarm.net/misc/urxvt-xtermcompat.txt
-(define-key function-key-map "\033[1;2A" [(shift up)])
-(define-key function-key-map "\033[1;2B" [(shift down)])
-(define-key function-key-map "\033[1;2D" [(shift left)])
-(define-key function-key-map "\033[1;2C" [(shift right)])
-(define-key function-key-map "\033[1;3A" [(meta up)])
-(define-key function-key-map "\033[1;3B" [(meta down)])
-(define-key function-key-map "\033[1;3D" [(meta left)])
-(define-key function-key-map "\033[1;3C" [(meta right)])
-(define-key function-key-map "\033[1;4A" [(shift meta up)])
-(define-key function-key-map "\033[1;4B" [(shift meta down)])
-(define-key function-key-map "\033[1;4D" [(shift meta left)])
-(define-key function-key-map "\033[1;4C" [(shift meta right)])
-(define-key function-key-map "\033[1;5A" [(control up)])
-(define-key function-key-map "\033[1;5B" [(control down)])
-(define-key function-key-map "\033[1;5D" [(control left)])
-(define-key function-key-map "\033[1;5C" [(control right)])
-(define-key function-key-map "\033[1;6A" [(control shift up)])
-(define-key function-key-map "\033[1;6B" [(control shift down)])
-(define-key function-key-map "\033[1;6D" [(control shift left)])
-(define-key function-key-map "\033[1;6C" [(control shift right)])
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(elisp-format zoom-window windresize
+					    window-purpose
+					    visual-regexp-steroids
+					    undo-tree smooth-scrolling
+					    smex
+					    rich-minority
+					    project-explorer
+					    projectile
+					    modern-cpp-font-lock
+					    ido-vertical-mode
+					    ido-completing-read+
+					    highlight-escape-sequences
+					    goto-last-change ggtags
+					    flycheck-irony flycheck
+					    flx-ido
+					    flx fill-column-indicator
+					    drag-stuff direx diff-hl
+					    beacon google-this
+					    auto-package-update
+					    auto-complete
+					    ace-jump-mode)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
